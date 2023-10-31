@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "pp9VpBierGZ8kiJrXZSasghTEsXX3fZFhp1PhErDDIU=",
+  "Source": "MatchMakerBackend",
+  "BasePath": "_content/MatchMakerBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
