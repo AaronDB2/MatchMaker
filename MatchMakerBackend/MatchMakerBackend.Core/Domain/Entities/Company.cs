@@ -28,6 +28,6 @@ namespace MatchMakerBackend.Core.Domain.Entities
 		public ICollection<ApplicationUser> Users { get; }
 
 		// Join table with tag entity (many to many relationship)
-		public List<Tag> Tags { get; } = new();
+		public List<Tag> Tags { get; set; } = new();
 	}
 }

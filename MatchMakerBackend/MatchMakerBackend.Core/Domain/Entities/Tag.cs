@@ -22,9 +22,9 @@ namespace MatchMakerBackend.Core.Domain.Entities
 		public string Name { get; set; }
 
 		// Join table with company entity (many to many relationship)
-		public List<Company> Companies { get; } = new();
+		public List<Company> Companies { get; set; } = new();
 
 		// Join table with applicationUser entity (many to many relationship)
-		public List<ApplicationUser> Users { get; } = new();
+		public List<ApplicationUser> Users { get; set; } = new();
 	}
 }
