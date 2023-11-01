@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aaron\\Desktop\\Web-Projects\\MatchMaker\\MatchMakerBackend\\MatchMakerBackend\\MatchMakerBackend.csproj",
-      "projectName": "MatchMakerBackend",
-      "projectPath": "C:\\Users\\aaron\\Desktop\\Web-Projects\\MatchMaker\\MatchMakerBackend\\MatchMakerBackend\\MatchMakerBackend.csproj",
+      "projectUniqueName": "C:\\Users\\aaron\\Desktop\\Web-Projects\\MatchMaker\\MatchMakerBackend\\MatchMakerBackend\\MatchMakerBackend.UI.csproj",
+      "projectName": "MatchMakerBackend.UI",
+      "projectPath": "C:\\Users\\aaron\\Desktop\\Web-Projects\\MatchMaker\\MatchMakerBackend\\MatchMakerBackend\\MatchMakerBackend.UI.csproj",
       "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\aaron\\Desktop\\Web-Projects\\MatchMaker\\MatchMakerBackend\\MatchMakerBackend\\obj\\",
       "projectStyle": "PackageReference",

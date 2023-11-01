@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E43fjFdv2wK8hIx20pIxMS9kgL+QG6T4kntbD9QXtiPrPNGAzUn2yTWydvV+LGMUANFRkG95mR7FsQt9jQj4QA==",
+  "dgSpecHash": "eFUUNzEH2+tiKFrP/we9opdm73IHy43OFRVuZpMVBzuwhbQZabvP86YS7imjzhBk1kykb2Y5jy3cNem8TQV7QA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aaron\\Desktop\\Web-Projects\\MatchMaker\\MatchMakerBackend\\MatchMakerBackend\\MatchMakerBackend.csproj",
+  "projectFilePath": "C:\\Users\\aaron\\Desktop\\Web-Projects\\MatchMaker\\MatchMakerBackend\\MatchMakerBackend\\MatchMakerBackend.UI.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
