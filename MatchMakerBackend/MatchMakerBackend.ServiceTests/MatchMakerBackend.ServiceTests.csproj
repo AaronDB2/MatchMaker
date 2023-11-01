@@ -21,4 +21,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MatchMakerBackend.Core\MatchMakerBackend.Core.csproj" />
+    <ProjectReference Include="..\MatchMakerBackend.Infrastructure\MatchMakerBackend.Infrastructure.csproj" />
+    <ProjectReference Include="..\MatchMakerBackend\MatchMakerBackend.UI.csproj" />
+  </ItemGroup>
+
 </Project>

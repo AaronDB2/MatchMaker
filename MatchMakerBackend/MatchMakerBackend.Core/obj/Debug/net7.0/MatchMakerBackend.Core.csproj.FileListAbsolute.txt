@@ -1,0 +1,12 @@
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\bin\Debug\net7.0\MatchMakerBackend.Core.deps.json
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\bin\Debug\net7.0\MatchMakerBackend.Core.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\bin\Debug\net7.0\MatchMakerBackend.Core.pdb
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\MatchMakerBackend.Core.csproj.AssemblyReference.cache
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\MatchMakerBackend.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\MatchMakerBackend.Core.AssemblyInfoInputs.cache
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\MatchMakerBackend.Core.AssemblyInfo.cs
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\MatchMakerBackend.Core.csproj.CoreCompileInputs.cache
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\MatchMakerBackend.Core.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\refint\MatchMakerBackend.Core.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\MatchMakerBackend.Core.pdb
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Core\obj\Debug\net7.0\ref\MatchMakerBackend.Core.dll
