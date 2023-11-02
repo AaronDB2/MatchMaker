@@ -15,8 +15,8 @@ namespace MatchMakerBackend.Core.Domain.IdentityEntities
 	public class ApplicationUser : IdentityUser<Guid>
 	{
 		// ForeignKey to companies
-		public Guid CompanyId { get; set; }
-		public Company Company { get; set; }
+		public Guid? CompanyId { get; set; }
+		public Company? Company { get; set; }
 
 		// Join table with tag entity (many to many relationship)
 		public List<Tag> Tags { get; set; } = new();

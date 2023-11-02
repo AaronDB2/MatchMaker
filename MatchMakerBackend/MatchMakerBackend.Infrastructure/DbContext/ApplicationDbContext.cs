@@ -1,5 +1,6 @@
 ﻿using MatchMakerBackend.Core.Domain.Entities;
 using MatchMakerBackend.Core.Domain.IdentityEntities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,6 +41,44 @@ namespace MatchMakerBackend.Infrastructure.DbContext
 			{
 				relationship.DeleteBehavior = DeleteBehavior.Restrict;
 			}
+
+			// Seed data
+			Guid ADMINUSER_ID = new Guid("6FBA5BE2-7F0A-496E-8090-F02C71B645D8");
+			Guid ADMINROLE_ID = new Guid("D5873591-4EF5-4D3B-A570-7E8B50748BA9");
+
+			//seed admin role
+			builder.Entity<ApplicationRole>().HasData(new ApplicationRole
+			{
+				Name = "Admin",
+				NormalizedName = "ADMIN",
+				Id = ADMINROLE_ID,
+				ConcurrencyStamp = ADMINROLE_ID.ToString()
+			});
+
+			//create user
+			// Normalize email and securitystamp ?????????
+			ApplicationUser appUser = new ApplicationUser
+			{
+				Id = ADMINUSER_ID,
+				Email = "aarontest@gmail.com",
+				EmailConfirmed = true,
+				UserName = "AaronTest",
+				NormalizedUserName = "AARONTEST"
+			};
+
+			//set user password
+			PasswordHasher<ApplicationUser> ph = new PasswordHasher<ApplicationUser>();
+			appUser.PasswordHash = ph.HashPassword(appUser, "Test123");
+
+			//seed user
+			builder.Entity<ApplicationUser>().HasData(appUser);
+
+			//set user role to admin
+			builder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
+			{
+				RoleId = ADMINROLE_ID,
+				UserId = ADMINUSER_ID
+			});
 		}
 	}
 }
