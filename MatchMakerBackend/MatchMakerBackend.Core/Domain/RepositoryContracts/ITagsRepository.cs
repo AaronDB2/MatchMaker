@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 namespace MatchMakerBackend.Core.Domain.RepositoryContracts
 {
 	/// <summary>
-	/// Tags repository contract for defining tags repository functions
+	/// Tags repository interface for defining tags repository functions
 	/// </summary>
 	public interface ITagsRepository
 	{
 		/// <summary>
 		/// Returns a list of all the tags
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>List of tags</returns>
 		Task<List<Tag>?> GetAllTags();
 
 		/// <summary>

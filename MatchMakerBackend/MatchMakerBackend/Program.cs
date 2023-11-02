@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 
 // Add services
 builder.Services.AddScoped<ITagsRepository, TagsRepository>();
+builder.Services.AddScoped<IChallengeRepository, ChallengeRepository>();
 
 // Add DbContext as a service
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

@@ -1,6 +1,7 @@
 ﻿using AutoFixture;
 using EntityFrameworkCoreMock;
 using MatchMakerBackend.Core.Domain.Entities;
+using MatchMakerBackend.Core.Domain.RepositoryContracts;
 using MatchMakerBackend.Infrastructure.DbContext;
 using MatchMakerBackend.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace MatchMakerBackend.RepositoryTests
 {
 	public class TagsRepositoryTests
 	{
-		private readonly TagsRepository _tagsRepository;
+		private readonly ITagsRepository _tagsRepository;
 
 		private readonly IFixture _fixture;
 
