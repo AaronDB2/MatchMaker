@@ -19,6 +19,6 @@ namespace MatchMakerBackend.Core.Domain.IdentityEntities
 		public Company Company { get; set; }
 
 		// Join table with tag entity (many to many relationship)
-		public List<Tag> Tags { get; } = new();
+		public List<Tag> Tags { get; set; } = new();
 	}
 }
