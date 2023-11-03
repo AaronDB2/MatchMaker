@@ -1,29 +1,39 @@
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
-import { NavigationContainer, NavLinks, NavLink } from "./navigation.styles";
+import {
+  NavigationContainer,
+  NavFooterContainer,
+  LogoContainer,
+  NavLinks,
+  NavLink,
+} from "./navigation.styles";
 
 // Navigation bar component
 const Navigation = () => {
   return (
     <Fragment>
       <NavigationContainer>
-        <NavLinks>
+        <LogoContainer>
           <NavLink to="/">LOGO/HOME</NavLink>
-          <NavLink to="/search-challenges">Search Challenges</NavLink>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
+        </LogoContainer>
+        <NavLinks>
+          <NavLink to="/search-challenges">SEARCH CHALLENGES</NavLink>
+          <NavLink to="/login">LOGIN</NavLink>
+          <NavLink to="/profile">PROFILE</NavLink>
         </NavLinks>
       </NavigationContainer>
       <Outlet />
-      <NavigationContainer>
-        <NavLinks>
+      <NavFooterContainer>
+        <LogoContainer>
           <NavLink to="/">LOGO/HOME</NavLink>
-          <NavLink to="/search-challenges">Search Challenges</NavLink>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
+        </LogoContainer>
+        <NavLinks>
+          <NavLink to="/search-challenges">SEARCH CHALLENGES</NavLink>
+          <NavLink to="/login">LOGIN</NavLink>
+          <NavLink to="/profile">PROFILE</NavLink>
         </NavLinks>
-      </NavigationContainer>
+      </NavFooterContainer>
     </Fragment>
   );
 };
