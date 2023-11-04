@@ -23,25 +23,43 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-// Configure Identity
-builder.Services
-	.AddIdentity<ApplicationUser, ApplicationRole>()
-	.AddEntityFrameworkStores<ApplicationDbContext>()
-	.AddDefaultTokenProviders()
-	.AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>()
-	.AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
 
 // Configure authorization rules
-builder.Services.AddAuthorization(options =>
+//builder.Services.AddAuthorization(options =>
+//{
+//	options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+//});
+
+// Configure identity
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => {
+	options.Password.RequiredLength = 5;
+	options.Password.RequireNonAlphanumeric = false;
+	options.Password.RequireUppercase = false;
+	options.Password.RequireLowercase = true;
+	options.Password.RequireDigit = true;
+})
+ .AddEntityFrameworkStores<ApplicationDbContext>()
+ .AddDefaultTokenProviders()
+ .AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>()
+ .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>()
+ ;
+
+// Configure CORS
+builder.Services.AddCors(options =>
 {
-	options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+	options.AddDefaultPolicy(builder => {
+		builder.WithOrigins("http://localhost:9500").AllowAnyHeader().AllowAnyMethod();
+	});
 });
 
 var app = builder.Build();
 
 // create application pipeline
-//app.UseStaticFiles(); // Middleware for serving static files
+//app.UseHsts();
+//app.UseHttpsRedirection();
+//app.UseStaticFiles();
 app.UseRouting(); // Middleware for routing
+app.UseCors(); // Middleware for enabling CORS
 app.UseAuthentication(); // Middleware for reading authentication cookie
 app.UseAuthorization(); // Middleware for authorization. Validates access permissions of the user
 app.MapControllers(); // Middleware for Executing filter pipeline

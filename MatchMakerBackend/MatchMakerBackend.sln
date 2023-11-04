@@ -9,15 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{87781F08-CB8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3196AB0A-E2EB-4A59-8927-6B1517BA7A59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchMakerBackend.Core", "MatchMakerBackend.Core\MatchMakerBackend.Core.csproj", "{BA4F5B8A-CAF2-4166-AB34-07142B9C5C6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchMakerBackend.Core", "MatchMakerBackend.Core\MatchMakerBackend.Core.csproj", "{BA4F5B8A-CAF2-4166-AB34-07142B9C5C6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchMakerBackend.Infrastructure", "MatchMakerBackend.Infrastructure\MatchMakerBackend.Infrastructure.csproj", "{AD041DB9-DBF4-4734-916B-31FBB55A3148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchMakerBackend.Infrastructure", "MatchMakerBackend.Infrastructure\MatchMakerBackend.Infrastructure.csproj", "{AD041DB9-DBF4-4734-916B-31FBB55A3148}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchMakerBackend.ControllerTests", "MatchMakerBackend.ControllerTests\MatchMakerBackend.ControllerTests.csproj", "{422EECF8-6C6E-4227-86FD-A35E4F6B9D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchMakerBackend.ControllerTests", "MatchMakerBackend.ControllerTests\MatchMakerBackend.ControllerTests.csproj", "{422EECF8-6C6E-4227-86FD-A35E4F6B9D5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchMakerBackend.ServiceTests", "MatchMakerBackend.ServiceTests\MatchMakerBackend.ServiceTests.csproj", "{4B51F189-9797-4BFC-9359-7E0C763C1396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchMakerBackend.ServiceTests", "MatchMakerBackend.ServiceTests\MatchMakerBackend.ServiceTests.csproj", "{4B51F189-9797-4BFC-9359-7E0C763C1396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchMakerBackend.RepositoryTests", "MatchMakerBackend.RepositoryTests\MatchMakerBackend.RepositoryTests.csproj", "{307B4E6B-E683-4E43-B81A-CD97D3E032C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchMakerBackend.RepositoryTests", "MatchMakerBackend.RepositoryTests\MatchMakerBackend.RepositoryTests.csproj", "{307B4E6B-E683-4E43-B81A-CD97D3E032C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

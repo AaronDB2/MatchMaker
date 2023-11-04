@@ -288,17 +288,19 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6fba5be2-7f0a-496e-8090-f02c71b645d8"),
+                            Id = new Guid("4b374141-5b2c-4db5-8416-01470b1f991e"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c774981-8de8-4a97-bc0d-3c9d9e0e326e",
+                            ConcurrencyStamp = "9c053325-e973-4e65-955e-d15859daa97d",
                             Email = "aarontest@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedUserName = "AARONTEST",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDRP1SoHptzPdaaVcP4kt1UeEN/+3DHJj1S3XRqEzwOUhokTqNh4tKYrj7VSA+QozA==",
+                            NormalizedEmail = "AARONTEST@GMAIL.COM",
+                            NormalizedUserName = "AARONTEST@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG8BQiNJ0ziA3HGOmiE2dI+XWWKkaiOlJMWyF2kzqV0D0snVeCMLjF7La8/mn9fveg==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "bd312f51-446a-44bc-8a2e-73d1b13bb5da",
                             TwoFactorEnabled = false,
-                            UserName = "AaronTest"
+                            UserName = "aarontest@gmail.com"
                         });
                 });
 
@@ -388,7 +390,7 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("6fba5be2-7f0a-496e-8090-f02c71b645d8"),
+                            UserId = new Guid("4b374141-5b2c-4db5-8416-01470b1f991e"),
                             RoleId = new Guid("d5873591-4ef5-4d3b-a570-7e8b50748ba9")
                         });
                 });
