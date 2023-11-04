@@ -18,6 +18,7 @@ const Login = () => {
       .post("http://localhost:5063/api/account", body)
       .then(function (response) {
         console.log(response);
+        localStorage["token"] = response.data.token;
       })
       .catch(function (error) {
         console.log(error);

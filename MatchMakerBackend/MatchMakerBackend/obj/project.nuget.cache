@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w4VO90Yqv/6pVXea4JOqRpNUCx8bWGKzkK8fKo09sHa2Ak+ZQs0kiDzVXbumypy6s9k+3nri+a4pLqK3ggO0xg==",
+  "dgSpecHash": "e/frtiLyIBcWZuMNf6CW4r8lstWDIlGvZy26fxSM5p5spMmuQLiIv05Al84SNytlOUvwWlUz0t0Kv7yeE/XzgQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\aaron\\Desktop\\Web-Projects\\MatchMaker\\MatchMakerBackend\\MatchMakerBackend\\MatchMakerBackend.UI.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\aaron\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\aaron\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Users\\aaron\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\aaron\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.13\\microsoft.aspnetcore.authentication.jwtbearer.7.0.13.nupkg.sha512",
     "C:\\Users\\aaron\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\aaron\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\aaron\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.13\\microsoft.aspnetcore.cryptography.internal.7.0.13.nupkg.sha512",

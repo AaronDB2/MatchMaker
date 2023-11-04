@@ -78,3 +78,4 @@ C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBacke
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

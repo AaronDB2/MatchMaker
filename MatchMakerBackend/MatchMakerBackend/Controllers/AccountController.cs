@@ -1,5 +1,6 @@
 ﻿using MatchMakerBackend.Core.Domain.IdentityEntities;
 using MatchMakerBackend.Core.DTO;
+using MatchMakerBackend.Core.ServiceContracts;
 using MatchMakerBackend.Infrastructure.Migrations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,12 +14,14 @@ namespace MatchMakerBackend.UI.Controllers
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly SignInManager<ApplicationUser> _signInManager;
+		private readonly IJwtService _jwtService;
 
 		// Constructor
-		public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+		public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IJwtService jwtService)
 		{
 			_userManager = userManager;
-			_signInManager = signInManager;;
+			_signInManager = signInManager;
+			_jwtService = jwtService;
 		}
 
 		/// <summary>
@@ -38,6 +41,7 @@ namespace MatchMakerBackend.UI.Controllers
 
 			ApplicationUser? user = await _userManager.FindByEmailAsync(loginDTO.Email);
 
+			// Check if user had been found
 			if (user == null)
 			{
 				return NoContent();
@@ -45,9 +49,13 @@ namespace MatchMakerBackend.UI.Controllers
 
 			var result = await _signInManager.PasswordSignInAsync(user.UserName, loginDTO.Password, isPersistent: false, lockoutOnFailure: false);
 
+			// Check if sign in was a success
 			if (result.Succeeded)
 			{
-				return Ok(new { userName = user.UserName, email = user.Email });
+				// Create Jwt token
+				var authenticationResponse = _jwtService.CreateJwtToken(user);
+
+				return Ok(authenticationResponse);
 			}
 
 			else
