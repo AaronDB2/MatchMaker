@@ -43,7 +43,7 @@ namespace MatchMakerBackend.Infrastructure.DbContext
 			}
 
 			// Seed data
-			Guid ADMINUSER_ID = new Guid("6FBA5BE2-7F0A-496E-8090-F02C71B645D8");
+			Guid ADMINUSER_ID = new Guid("4B374141-5B2C-4DB5-8416-01470B1F991E");
 			Guid ADMINROLE_ID = new Guid("D5873591-4EF5-4D3B-A570-7E8B50748BA9");
 
 			//seed admin role
@@ -56,19 +56,20 @@ namespace MatchMakerBackend.Infrastructure.DbContext
 			});
 
 			//create user
-			// Normalize email and securitystamp ?????????
 			ApplicationUser appUser = new ApplicationUser
 			{
 				Id = ADMINUSER_ID,
 				Email = "aarontest@gmail.com",
 				EmailConfirmed = true,
-				UserName = "AaronTest",
-				NormalizedUserName = "AARONTEST"
+				UserName = "aarontest@gmail.com",
+				NormalizedUserName = "AARONTEST@GMAIL.COM",
+				NormalizedEmail = "AARONTEST@GMAIL.COM",
+				SecurityStamp = Guid.NewGuid().ToString("D"),
 			};
 
 			//set user password
 			PasswordHasher<ApplicationUser> ph = new PasswordHasher<ApplicationUser>();
-			appUser.PasswordHash = ph.HashPassword(appUser, "Test123");
+			appUser.PasswordHash = ph.HashPassword(appUser, "secret");
 
 			//seed user
 			builder.Entity<ApplicationUser>().HasData(appUser);

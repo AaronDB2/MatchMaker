@@ -1,6 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import { GlobalStyle } from "./global.styles";
 
 import Navigation from "./routes/navigation/navigation.component";

@@ -155,3 +155,7 @@ C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBacke
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\obj\Debug\net7.0\MatchMakerBackend.ControllerTests.pdb
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\obj\Debug\net7.0\MatchMakerBackend.ControllerTests.genruntimeconfig.cache
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\obj\Debug\net7.0\ref\MatchMakerBackend.ControllerTests.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\bin\Debug\net7.0\AutoFixture.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\bin\Debug\net7.0\Castle.Core.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\bin\Debug\net7.0\Fare.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\bin\Debug\net7.0\Moq.dll
