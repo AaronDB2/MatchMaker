@@ -8,11 +8,20 @@ using MatchMakerBackend.Core.Domain.RepositoryContracts;
 using MatchMakerBackend.Infrastructure.Repositories;
 using MatchMakerBackend.Core.ServiceContracts;
 using MatchMakerBackend.Core.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Adds all controllers as services without views
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+	// Authorization policy
+	var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+	options.Filters.Add(new AuthorizeFilter(policy));
+});
 
 // Add services
 builder.Services.AddScoped<ITagsRepository, TagsRepository>();
@@ -48,6 +57,31 @@ builder.Services.AddCors(options =>
 	options.AddDefaultPolicy(builder => {
 		builder.WithOrigins("http://localhost:9500").AllowAnyHeader().AllowAnyMethod();
 	});
+});
+
+
+// JWT
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+	options.TokenValidationParameters = new TokenValidationParameters()
+	{
+		ValidateAudience = true,
+		ValidAudience = builder.Configuration["Jwt:Audience"],
+		ValidateIssuer = true,
+		ValidIssuer = builder.Configuration["Jwt:Issuer"],
+		ValidateLifetime = true,
+		ValidateIssuerSigningKey = true,
+		IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+	};
+});
+
+builder.Services.AddAuthorization(options =>
+{
+
 });
 
 var app = builder.Build();

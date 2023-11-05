@@ -30,6 +30,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <param name="loginDTO">LoginDTO model</param>
 		/// <returns>On success returns username and email</returns>
 		[HttpPost]
+		[AllowAnonymous]
 		public async Task<IActionResult> PostLogin(LoginDTO loginDTO)
 		{
 			//Validation
