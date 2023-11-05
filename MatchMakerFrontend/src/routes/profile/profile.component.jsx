@@ -79,6 +79,7 @@ const Profile = () => {
           <input type="submit" value="Submit" />
         </PasswordChangeForm>
         <NavLink to="/create-company">CREATE COMPANY</NavLink>
+        <NavLink to="/create-tag">CREATE TAG</NavLink>
       </ProfileContainer>
     </PageBody>
   );
