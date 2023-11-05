@@ -159,3 +159,4 @@ C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBacke
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\bin\Debug\net7.0\Castle.Core.dll
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\bin\Debug\net7.0\Fare.dll
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\bin\Debug\net7.0\Moq.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ControllerTests\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -33,7 +33,7 @@ namespace MatchMakerBackend.UI.Controllers
 		public async Task<IActionResult> PostLogin(LoginDTO loginDTO)
 		{
 			//Validation
-			if (ModelState.IsValid == false)
+			if (!ModelState.IsValid)
 			{
 				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
 				return Problem(errorMessage);
@@ -61,6 +61,49 @@ namespace MatchMakerBackend.UI.Controllers
 			else
 			{
 				return Problem("Invalid email or password");
+			}
+		}
+
+		// Updates password for ApplicationUser entity
+		[HttpPost]
+		[Route("updateUserPassword")]
+		public async Task<IActionResult> UpdatePassword(UpdatePasswordRequest updatePasswordRequest)
+		{
+			// Check if updatePasswordRequest is null
+			if (updatePasswordRequest == null)
+			{
+				throw new ArgumentNullException(nameof(updatePasswordRequest));
+			}
+
+			// Check if model state is valid
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+
+			// Get current user from data store
+			ApplicationUser user = await _userManager.FindByNameAsync(updatePasswordRequest.UserName);
+
+			// Check if user had been found
+			if (user == null)
+			{
+				return NoContent();
+			}
+
+			IdentityResult result = await _userManager.ChangePasswordAsync(user, updatePasswordRequest.CurrentPassword, updatePasswordRequest.Password);
+
+			// Check if password change was success
+			if (result.Succeeded)
+			{
+				// Create Jwt token
+				var authenticationResponse = _jwtService.CreateJwtToken(user);
+
+				return Ok(authenticationResponse);
+			}
+			else
+			{
+				return Problem("Wrong password");
 			}
 		}
 	}
