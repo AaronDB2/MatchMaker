@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MatchMakerBackend.Core.Domain.RepositoryContracts;
 using MatchMakerBackend.Infrastructure.Repositories;
+using MatchMakerBackend.Core.ServiceContracts;
+using MatchMakerBackend.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,11 +26,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-// Configure authorization rules
-//builder.Services.AddAuthorization(options =>
-//{
-//	options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-//});
+builder.Services.AddTransient<IJwtService, JwtService>();
 
 // Configure identity
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => {

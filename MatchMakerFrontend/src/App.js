@@ -18,9 +18,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/search-challenges" element={<SearchChallenges />} />
-          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </Fragment>

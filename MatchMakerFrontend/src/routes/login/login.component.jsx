@@ -18,6 +18,18 @@ const Login = () => {
       .post("http://localhost:5063/api/account", body)
       .then(function (response) {
         console.log(response);
+
+        // Set local storage
+        localStorage["token"] = response.data.token;
+
+        // Creates storageChangeEvent
+        const storageChangeEvent = new StorageEvent("storage", {
+          key: "token",
+          newValue: response.data.token,
+        });
+
+        // Triggers storageChangeEvent so that it triggers navigation rerender
+        window.dispatchEvent(storageChangeEvent);
       })
       .catch(function (error) {
         console.log(error);
