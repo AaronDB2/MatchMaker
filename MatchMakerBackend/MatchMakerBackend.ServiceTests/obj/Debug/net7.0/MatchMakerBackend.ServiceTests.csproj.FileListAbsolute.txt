@@ -155,3 +155,9 @@ C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBacke
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\obj\Debug\net7.0\MatchMakerBackend.ServiceTests.pdb
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\obj\Debug\net7.0\MatchMakerBackend.ServiceTests.genruntimeconfig.cache
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\obj\Debug\net7.0\ref\MatchMakerBackend.ServiceTests.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\bin\Debug\net7.0\AutoFixture.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\bin\Debug\net7.0\Castle.Core.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\bin\Debug\net7.0\Fare.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\bin\Debug\net7.0\FluentAssertions.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.ServiceTests\bin\Debug\net7.0\Moq.dll

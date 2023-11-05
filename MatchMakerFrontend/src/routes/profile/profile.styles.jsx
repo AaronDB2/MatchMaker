@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const PageBody = styled.div`
   grid-area: main;
@@ -27,4 +28,9 @@ export const PasswordChangeForm = styled.form`
   input[type="submit"] {
     margin: 1rem 0;
   }
+`;
+
+export const NavLink = styled(Link)`
+  padding: 0.5rem;
+  cursor: pointer;
 `;

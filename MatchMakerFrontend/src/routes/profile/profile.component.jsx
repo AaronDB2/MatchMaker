@@ -6,6 +6,7 @@ import {
   PageBody,
   PasswordChangeForm,
   ProfileContainer,
+  NavLink,
 } from "./profile.styles";
 
 // Profile page component
@@ -77,6 +78,7 @@ const Profile = () => {
           <input type="password" id="confirmPassword" name="ConfirmPassword" />
           <input type="submit" value="Submit" />
         </PasswordChangeForm>
+        <NavLink to="/create-company">CREATE COMPANY</NavLink>
       </ProfileContainer>
     </PageBody>
   );

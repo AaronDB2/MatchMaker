@@ -10,6 +10,7 @@
         "dependencies": {
           "MatchMakerBackend.Core": "1.0.0",
           "MatchMakerBackend.Infrastructure": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.13",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.13",
           "Microsoft.EntityFrameworkCore": "7.0.13",
