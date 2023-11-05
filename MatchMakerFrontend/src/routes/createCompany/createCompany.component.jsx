@@ -41,7 +41,7 @@ const CreateCompany = () => {
       <CreateCompanyContainer>
         <PageTitle>Create Company</PageTitle>
         <CreateCompanyForm onSubmit={handleSubmit}>
-          <label for="companyName">Company Name:</label>
+          <label for="companyname">Company Name:</label>
           <input type="text" id="companyname" name="CompanyName" />
           <label for="companydescription">Description:</label>
           <textarea

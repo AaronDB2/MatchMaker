@@ -10,6 +10,7 @@ import Login from "./routes/login/login.component";
 import SearchChallenges from "./routes/searchChallenges/searchChallenges.component";
 import Profile from "./routes/profile/profile.component";
 import CreateCompany from "./routes/createCompany/createCompany.component";
+import CreateTag from "./routes/createTags/createTags.component";
 
 // App component. Hold routing functionality
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/search-challenges" element={<SearchChallenges />} />
           <Route path="/create-company" element={<CreateCompany />} />
+          <Route path="/create-tag" element={<CreateTag />} />
         </Route>
       </Routes>
     </Fragment>
