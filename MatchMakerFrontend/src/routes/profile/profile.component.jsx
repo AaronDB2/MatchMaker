@@ -29,7 +29,11 @@ const Profile = () => {
 
     // Send request
     axios
-      .post("http://localhost:5063/api/account/updateUserPassword", body)
+      .post("http://localhost:5063/api/account/updateUserPassword", body, {
+        headers: {
+          Authorization: "Bearer " + localStorage["token"],
+        },
+      })
       .then(function (response) {
         console.log(response);
         // Set local storage
