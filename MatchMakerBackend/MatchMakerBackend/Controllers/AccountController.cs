@@ -65,7 +65,12 @@ namespace MatchMakerBackend.UI.Controllers
 			}
 		}
 
-		// Updates password for ApplicationUser entity
+		/// <summary>
+		/// Updates user password endpoint
+		/// </summary>
+		/// <param name="updatePasswordRequest">Data for updating the user password</param>
+		/// <returns>New Jwt cookie when success</returns>
+		/// <exception cref="ArgumentNullException">Check if request data exists</exception>
 		[HttpPost]
 		[Route("updateUserPassword")]
 		public async Task<IActionResult> UpdatePassword(UpdatePasswordRequest updatePasswordRequest)
