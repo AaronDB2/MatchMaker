@@ -37,7 +37,7 @@ namespace MatchMakerBackend.Core.Domain.Entities
 
 		// ForeignKey to users
 		[Required]
-		public Guid ContactUserId { get; set; }
+		//public Guid ContactUserId { get; set; }
 		public ApplicationUser ContactPerson { get; set; }
 
 		[Required]

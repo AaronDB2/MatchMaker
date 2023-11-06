@@ -22,10 +22,12 @@ namespace MatchMakerBackend.ControllerTests
 		private readonly Mock<UserManager<ApplicationUser>> _userManagerMock;
 		private readonly Mock<SignInManager<ApplicationUser>> _signInManagerMock;
 		private readonly Mock<IJwtService> _jwtServiceMock;
+		private readonly Mock<ICompanyGetterService> _companyGetterServiceMock;
 
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly IJwtService _jwtService;
+		private readonly ICompanyGetterService _companyGetterService;
 		private readonly IFixture _fixture;
 
 		public AccountControllerTests()
@@ -48,7 +50,10 @@ namespace MatchMakerBackend.ControllerTests
 			_jwtServiceMock = new Mock<IJwtService>();
 			_jwtService = _jwtServiceMock.Object;
 
-			_accountController = new AccountController(_userManager, _signInManager, _jwtService);
+			_companyGetterServiceMock = new Mock<ICompanyGetterService>();
+			_companyGetterService = _companyGetterServiceMock.Object;
+
+			_accountController = new AccountController(_userManager, _signInManager, _jwtService, _companyGetterService);
 		}
 
 		[Fact]

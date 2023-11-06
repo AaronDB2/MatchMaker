@@ -114,6 +114,7 @@ const Profile = () => {
         </EditDataForm>
         <NavLink to="/create-company">CREATE COMPANY</NavLink>
         <NavLink to="/create-tag">CREATE TAG</NavLink>
+        <NavLink to="/create-challenge">CREATE CHALLENGE</NavLink>
       </ProfileContainer>
     </PageBody>
   );
