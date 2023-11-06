@@ -32,6 +32,7 @@ builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<ICompanyAdderService, CompanyAdderService>();
 builder.Services.AddScoped<ICompanyGetterService, CompanyGetterService>();
 builder.Services.AddScoped<ITagAdderService, TagAdderService>();
+builder.Services.AddScoped<IChallengeAdderService, ChallengeAdderService>();
 
 // Add DbContext as a service
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

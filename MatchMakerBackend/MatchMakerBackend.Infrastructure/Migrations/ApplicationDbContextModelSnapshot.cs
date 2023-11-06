@@ -79,9 +79,6 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                     b.Property<Guid>("ContactPersonId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ContactUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("DateSubmitted")
                         .HasColumnType("datetime2");
 
@@ -290,15 +287,15 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                         {
                             Id = new Guid("4b374141-5b2c-4db5-8416-01470b1f991e"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9c053325-e973-4e65-955e-d15859daa97d",
+                            ConcurrencyStamp = "d062ed57-a9bf-488e-81d2-155b405bc7a5",
                             Email = "aarontest@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AARONTEST@GMAIL.COM",
                             NormalizedUserName = "AARONTEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG8BQiNJ0ziA3HGOmiE2dI+XWWKkaiOlJMWyF2kzqV0D0snVeCMLjF7La8/mn9fveg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENgQTcwEwGDrXt1YdapDEJMK5lIrQfokilOBG9mcbRZj09zIA4rltVTkjKkjjlljNg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bd312f51-446a-44bc-8a2e-73d1b13bb5da",
+                            SecurityStamp = "cc6085cd-96de-4ef0-8543-b59f925e515d",
                             TwoFactorEnabled = false,
                             UserName = "aarontest@gmail.com"
                         });
