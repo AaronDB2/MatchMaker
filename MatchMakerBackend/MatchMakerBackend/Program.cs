@@ -30,6 +30,7 @@ builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 
 builder.Services.AddScoped<ICompanyAdderService, CompanyAdderService>();
+builder.Services.AddScoped<ICompanyGetterService, CompanyGetterService>();
 builder.Services.AddScoped<ITagAdderService, TagAdderService>();
 
 // Add DbContext as a service

@@ -16,7 +16,7 @@ export const PageTitle = styled.h1`
   text-align: center;
 `;
 
-export const PasswordChangeForm = styled.form`
+export const EditDataForm = styled.form`
   display: flex;
   flex-direction: column;
   max-width: 880px;

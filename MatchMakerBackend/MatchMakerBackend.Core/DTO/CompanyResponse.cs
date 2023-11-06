@@ -14,5 +14,7 @@ namespace MatchMakerBackend.Core.DTO
 		public string? CompanyName { get; set; }
 
 		public string? CompanyDescription { get; set;}
+
+		public Guid? CompanyId { get; set; }
 	}
 }
