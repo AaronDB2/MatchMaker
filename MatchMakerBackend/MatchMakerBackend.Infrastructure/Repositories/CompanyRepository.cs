@@ -47,6 +47,16 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 		}
 
 		/// <summary>
+		/// Get company by company name
+		/// </summary>
+		/// <param name="companyName">Name of the company to retrieve out the data store</param>
+		/// <returns>If found the company that matches the company name</returns>
+		public async Task<Company?> GetCompanyByCompanyName(string companyName)
+		{
+			return await _db.Companies.FirstOrDefaultAsync(company => company.CompanyName == companyName);
+		}
+
+		/// <summary>
 		/// Get filterd companies from data store
 		/// </summary>
 		/// <param name="predicate">LINQ expression to check</param>

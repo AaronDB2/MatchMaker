@@ -15,13 +15,20 @@ namespace MatchMakerBackend.UI.Controllers
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly IJwtService _jwtService;
+		private readonly ICompanyGetterService _companyGetterService;
 
 		// Constructor
-		public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IJwtService jwtService)
+		public AccountController(
+			UserManager<ApplicationUser> userManager, 
+			SignInManager<ApplicationUser> signInManager, 
+			IJwtService jwtService,
+			ICompanyGetterService companyGetterService
+		)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_jwtService = jwtService;
+			_companyGetterService = companyGetterService;
 		}
 
 		/// <summary>
@@ -110,6 +117,56 @@ namespace MatchMakerBackend.UI.Controllers
 			else
 			{
 				return Problem("Wrong password");
+			}
+		}
+
+		/// <summary>
+		/// Update company end point for updating user company
+		/// </summary>
+		/// <param name="updateUserCompanyRequest">UpdateUserCompanyRequest model</param>
+		/// <returns>On success returns updated company name</returns>
+		[HttpPost]
+		[Route("updateUserCompany")]
+		public async Task<IActionResult> UpdateCompany(UpdateUserCompanyRequest updateUserCompanyRequest)
+		{
+			//Validation
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+
+			// Get user by username
+			ApplicationUser? user = await _userManager.FindByNameAsync(updateUserCompanyRequest.UserName);
+
+			// Check if user had been found
+			if (user == null)
+			{
+				return NoContent();
+			}
+
+			var companyResponse = await _companyGetterService.GetCompanyByCompanyName(updateUserCompanyRequest.CompanyName);
+
+			// Check if company was found
+			if (companyResponse == null)
+			{
+				return NoContent();
+			}
+
+			// Set company on user entity
+			user.CompanyId = companyResponse.CompanyId;
+
+			// Update the user in data store
+			IdentityResult result = await _userManager.UpdateAsync(user);
+
+			// Check if user was updated
+			if (result.Succeeded)
+			{
+				return Ok(companyResponse);
+			}
+			else
+			{
+				return Problem("Company is invalid");
 			}
 		}
 	}

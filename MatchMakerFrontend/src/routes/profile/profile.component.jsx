@@ -4,7 +4,7 @@ import axios from "axios";
 import {
   PageTitle,
   PageBody,
-  PasswordChangeForm,
+  EditDataForm,
   ProfileContainer,
   NavLink,
 } from "./profile.styles";
@@ -15,7 +15,7 @@ const Profile = () => {
   const decodedToken = jwtDecode(localStorage["token"]);
 
   // Handles change password form submit event
-  const handleSubmit = (e) => {
+  const handleSubmitUpdatePassword = (e) => {
     e.preventDefault();
     // Prepare request body
     var body = {
@@ -58,6 +58,35 @@ const Profile = () => {
     e.target.ConfirmPassword.value = "";
   };
 
+  // Handles change company form submit event
+  const handleSubmitUpdateCompany = (e) => {
+    e.preventDefault();
+    // Prepare request body
+    var body = {
+      CompanyName: e.target.CompanyName.value,
+      UserName:
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+        ],
+    };
+
+    // Send request
+    axios
+      .post("http://localhost:5063/api/account/updateUserCompany", body, {
+        headers: {
+          Authorization: "Bearer " + localStorage["token"],
+        },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    e.target.CompanyName.value = "";
+  };
+
   return (
     <PageBody>
       <ProfileContainer>
@@ -69,7 +98,7 @@ const Profile = () => {
             ]
           }
         </PageTitle>
-        <PasswordChangeForm onSubmit={handleSubmit}>
+        <EditDataForm onSubmit={handleSubmitUpdatePassword}>
           <label for="currentPassword">Current Password:</label>
           <input type="password" id="currentPassword" name="CurrentPassword" />
           <label for="password">New Password:</label>
@@ -77,7 +106,12 @@ const Profile = () => {
           <label for="confirmPassword">Confirm Password:</label>
           <input type="password" id="confirmPassword" name="ConfirmPassword" />
           <input type="submit" value="Submit" />
-        </PasswordChangeForm>
+        </EditDataForm>
+        <EditDataForm onSubmit={handleSubmitUpdateCompany}>
+          <label for="companyName">Company:</label>
+          <input type="text" id="company" name="CompanyName" />
+          <input type="submit" value="Submit" />
+        </EditDataForm>
         <NavLink to="/create-company">CREATE COMPANY</NavLink>
         <NavLink to="/create-tag">CREATE TAG</NavLink>
       </ProfileContainer>

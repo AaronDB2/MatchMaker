@@ -20,6 +20,13 @@ namespace MatchMakerBackend.Core.Domain.RepositoryContracts
 		Task<List<Company>?> GetAllCompanies();
 
 		/// <summary>
+		/// Returns the company from the data store that matched the searched company name
+		/// </summary>
+		/// <param name="companyName">company name (string) to search</param>
+		/// <returns>Company that matched the given company name or null</returns>
+		Task<Company?> GetCompanyByCompanyName(string companyName);
+
+		/// <summary>
 		/// Returns all company objects from data store based on given expression
 		/// </summary>
 		/// <param name="predicate">LINQ expression to check</param>
