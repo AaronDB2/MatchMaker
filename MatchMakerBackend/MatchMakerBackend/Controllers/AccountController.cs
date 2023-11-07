@@ -127,7 +127,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>On success returns updated company name</returns>
 		[HttpPost]
 		[Route("updateUserCompany")]
-		public async Task<IActionResult> UpdateCompany(UpdateUserCompanyRequest updateUserCompanyRequest)
+		public async Task<IActionResult> UpdateUserCompany(UpdateUserCompanyRequest updateUserCompanyRequest)
 		{
 			//Validation
 			if (!ModelState.IsValid)
@@ -167,6 +167,55 @@ namespace MatchMakerBackend.UI.Controllers
 			else
 			{
 				return Problem("Company is invalid");
+			}
+		}
+
+		/// <summary>
+		/// Endpoint for creating a new user account without sending a new JWT token
+		/// This endpoint is only for creating a new user account.
+		/// </summary>
+		/// <param name="registerDTO">DTO model to create a new user account from</param>
+		/// <returns>On success created account username and email</returns>
+		[HttpPost]
+		[Route("createUserAccount")]
+		public async Task<IActionResult> CreateUserAccount(RegisterDTO registerDTO)
+		{
+			//Validation
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+
+			// Create new ApplicationUser based on data from RegisterDTO
+			ApplicationUser user = new ApplicationUser();
+			user.UserName = registerDTO.UserName;
+			user.Email = registerDTO.Email;
+
+			// Create new User
+			IdentityResult result = await _userManager.CreateAsync(user, registerDTO.Password);
+
+			// Check if user was updated
+			if (result.Succeeded)
+			{
+				// Check if user needs the admin role
+				if (registerDTO.Admin != null)
+				{
+					IdentityResult resultAddedToRole = await _userManager.AddToRoleAsync(user, "Admin");
+				}
+
+				// Create Response
+				AccountResponse accountResponse = new AccountResponse()
+				{
+					UserName = registerDTO.UserName,
+					Email = registerDTO.Email,
+				};
+
+				return Ok(accountResponse);
+			}
+			else
+			{
+				return Problem("Account is invalid");
 			}
 		}
 	}

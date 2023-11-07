@@ -12,6 +12,7 @@ import Profile from "./routes/profile/profile.component";
 import CreateCompany from "./routes/createCompany/createCompany.component";
 import CreateTag from "./routes/createTags/createTags.component";
 import CreateChallenge from "./routes/createChallenge/createChallenge.component";
+import CreateAccount from "./routes/createAccount/createAccount.component";
 
 // App component. Hold routing functionality
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/create-company" element={<CreateCompany />} />
           <Route path="/create-tag" element={<CreateTag />} />
           <Route path="/create-challenge" element={<CreateChallenge />} />
+          <Route path="/create-account" element={<CreateAccount />} />
         </Route>
       </Routes>
     </Fragment>

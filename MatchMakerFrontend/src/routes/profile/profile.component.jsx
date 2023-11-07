@@ -115,6 +115,7 @@ const Profile = () => {
         <NavLink to="/create-company">CREATE COMPANY</NavLink>
         <NavLink to="/create-tag">CREATE TAG</NavLink>
         <NavLink to="/create-challenge">CREATE CHALLENGE</NavLink>
+        <NavLink to="/create-account">CREATE ACCOUNT</NavLink>
       </ProfileContainer>
     </PageBody>
   );
