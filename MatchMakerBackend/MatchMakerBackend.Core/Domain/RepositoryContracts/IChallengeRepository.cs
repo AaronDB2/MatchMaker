@@ -20,6 +20,13 @@ namespace MatchMakerBackend.Core.Domain.RepositoryContracts
 		Task<List<Challenge>?> GetAllChallenges();
 
 		/// <summary>
+		/// Gets challenge that matches the given Id
+		/// </summary>
+		/// <param name="id">Challenge Id to get</param>
+		/// <returns>Challenge that matches the Id</returns>
+		Task<Challenge?> GetChallengeById(Guid id);
+
+		/// <summary>
 		/// Returns all challenge objects from data store based on given expression
 		/// </summary>
 		/// <param name="predicate">LINQ expression to check</param>

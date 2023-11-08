@@ -47,6 +47,16 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 		}
 
 		/// <summary>
+		/// Gets challenge that matches the given Id
+		/// </summary>
+		/// <param name="id">Challenge Id to get</param>
+		/// <returns>Challenge that matches the Id</returns>
+		public async Task<Challenge?> GetChallengeById(Guid id)
+		{
+			return await _db.Challenges.FirstOrDefaultAsync(challenge => challenge.Id == id);
+		}
+
+		/// <summary>
 		/// Get filterd challenges from data store
 		/// </summary>
 		/// <param name="predicate">LINQ expression to check</param>
