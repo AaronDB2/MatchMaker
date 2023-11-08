@@ -11,6 +11,10 @@ namespace MatchMakerBackend.Core.DTO
 	/// </summary>
 	public class ChallengeResponse
 	{
-		public string ChallengeTitle { get; set; }
+		public string? ChallengeTitle { get; set; }
+
+		public Guid? ChallengeId { get; set; }
+
+		public string? ChallengeDescription { get; set; }
 	}
 }
