@@ -2,6 +2,7 @@
 using MatchMakerBackend.Core.DTO;
 using MatchMakerBackend.Core.ServiceContracts;
 using MatchMakerBackend.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,18 @@ namespace MatchMakerBackend.UI.Controllers
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly IChallengeAdderService _challengeAdderService;
+		private readonly IChallengeGetterService _challengeGetterService;
 
-		//Constructor
-		public ChallengeController(UserManager<ApplicationUser> userManager, IChallengeAdderService challengeAdderService) 
+		// Constructor
+		public ChallengeController(
+			UserManager<ApplicationUser> userManager, 
+			IChallengeAdderService challengeAdderService,
+			IChallengeGetterService challengeGetterService
+		) 
 		{ 
 			_userManager = userManager;
 			_challengeAdderService = challengeAdderService;
+			_challengeGetterService = challengeGetterService;
 		}
 
 		/// <summary>
@@ -56,6 +63,38 @@ namespace MatchMakerBackend.UI.Controllers
 			} else
 			{
 				return Ok(response);
+			}
+		}
+
+		/// <summary>
+		/// Endpoint for searching challenges
+		/// </summary>
+		/// <param name="searchBy">Param to search by</param>
+		/// <param name="searchString">Value to search by</param>
+		/// <returns>On success a lost of challenges that match the search params</returns>
+		[HttpGet]
+		[Route("getFilterdChallenges")]
+		[AllowAnonymous]
+		public async Task<IActionResult> GetFilterdChallenges(string searchBy = "", string searchString = "")
+		{
+			// Validation
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+			
+			// Get filterd challenges
+			List<ChallengeResponse> filterdChallenges = await _challengeGetterService.GetFilterdChallenges(searchBy, searchString);
+
+			// Check if response is null
+			if (filterdChallenges == null)
+			{
+				return NoContent();
+			}
+			else
+			{
+				return Ok(filterdChallenges);
 			}
 		}
 	}
