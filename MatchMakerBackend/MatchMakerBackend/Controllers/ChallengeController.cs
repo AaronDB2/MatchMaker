@@ -97,5 +97,36 @@ namespace MatchMakerBackend.UI.Controllers
 				return Ok(filterdChallenges);
 			}
 		}
+
+		/// <summary>
+		/// Endpoint for getting a challenge by Id
+		/// </summary>
+		/// <param name="challengeId">Challenge Id to get</param>
+		/// <returns>On success returns a challenge that matches the given Id</returns>
+		[HttpGet]
+		[Route("{challengeId}")]
+		[AllowAnonymous]
+		public async Task<IActionResult> GetChallenge(Guid challengeId)
+		{
+			// Validation
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+
+			// Get challenge by id
+			ChallengeResponse challenge = await _challengeGetterService.GetChallengeByChallengeId(challengeId);
+
+			// Check if response is null
+			if (challenge == null)
+			{
+				return NoContent();
+			}
+			else
+			{
+				return Ok(challenge);
+			}
+		}
 	}
 }
