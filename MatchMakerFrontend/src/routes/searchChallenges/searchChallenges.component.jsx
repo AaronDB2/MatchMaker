@@ -8,6 +8,7 @@ import {
   SearchChallengesForm,
   SearchChallengeTable,
 } from "./searchChallenges.styles";
+import { NavLink } from "../navigation/navigation.styles";
 
 // Search challenges page component
 const SearchChallenges = () => {
@@ -71,7 +72,15 @@ const SearchChallenges = () => {
             </tr>
             {challenges.map((challenge, index) => (
               <tr key={index}>
-                <th>{challenge["challengeTitle"]}</th>
+                <th>
+                  <NavLink
+                    to={{
+                      pathname: `/challenge/${challenge["challengeId"]}`,
+                    }}
+                  >
+                    {challenge["challengeTitle"]}
+                  </NavLink>
+                </th>
                 <th>{challenge["challengeId"]}</th>
                 <th>{challenge["challengeDescription"]}</th>
               </tr>
