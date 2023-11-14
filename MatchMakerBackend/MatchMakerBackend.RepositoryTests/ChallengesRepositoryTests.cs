@@ -98,7 +98,7 @@ namespace MatchMakerBackend.RepositoryTests
 			Challenge result = await _challengeRepository.UpdateChallenge(updateChallenge);
 
 			// Assert
-			Assert.Equal(result, updateChallenge);
+			Assert.Equal(result.ChallengeTitle, updateChallenge.ChallengeTitle);
 		}
 	}
 }

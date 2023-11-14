@@ -79,8 +79,10 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 			// If there is no matching company in db return company
 			if (matchingCompany == null) return company;
 
-			// Update courseText and CourseFileName
-			matchingCompany = company;
+			// Update
+			matchingCompany.CompanyDescription = company.CompanyDescription;
+			matchingCompany.CompanyName = company.CompanyName;
+			matchingCompany.Tags = company.Tags;
 
 			await _db.SaveChangesAsync();
 

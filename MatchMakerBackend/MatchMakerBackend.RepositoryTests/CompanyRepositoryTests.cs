@@ -98,7 +98,7 @@ namespace MatchMakerBackend.RepositoryTests
 			Company result = await _companyRepository.UpdateCompany(updateCompany);
 
 			// Assert
-			Assert.Equal(result, updateCompany);
+			Assert.Equal(result.CompanyName, updateCompany.CompanyName);
 		}
 	}
 }

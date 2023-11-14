@@ -79,8 +79,17 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 			// If there is no matching challenge in db return challenge
 			if (matchingChallenge == null) return challenge;
 
-			// Update courseText and CourseFileName
-			matchingChallenge = challenge;
+			// Update challenge
+			matchingChallenge.ChallengeDescription = challenge.ChallengeDescription;
+			matchingChallenge.EndDate = challenge.EndDate;
+			matchingChallenge.ChallengeTitle = challenge.ChallengeTitle;
+			matchingChallenge.ChallengeFileName = challenge.ChallengeFileName;
+			matchingChallenge.ResultFileName = challenge.ResultFileName;
+			matchingChallenge.CompanyId = challenge.CompanyId;
+			matchingChallenge.ContactPerson = challenge.ContactPerson;
+			matchingChallenge.DateSubmitted = challenge.DateSubmitted;
+			matchingChallenge.ProgressionStatus = challenge.ProgressionStatus;
+			matchingChallenge.ViewStatus = challenge.ViewStatus;
 
 			await _db.SaveChangesAsync();
 

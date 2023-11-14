@@ -16,17 +16,20 @@ namespace MatchMakerBackend.UI.Controllers
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly IChallengeAdderService _challengeAdderService;
 		private readonly IChallengeGetterService _challengeGetterService;
+		private readonly IChallengeUpdateService _challengeUpdateService;
 
 		// Constructor
 		public ChallengeController(
 			UserManager<ApplicationUser> userManager, 
 			IChallengeAdderService challengeAdderService,
-			IChallengeGetterService challengeGetterService
+			IChallengeGetterService challengeGetterService,
+			IChallengeUpdateService challengeUpdateService
 		) 
 		{ 
 			_userManager = userManager;
 			_challengeAdderService = challengeAdderService;
 			_challengeGetterService = challengeGetterService;
+			_challengeUpdateService = challengeUpdateService;
 		}
 
 		/// <summary>
@@ -126,6 +129,36 @@ namespace MatchMakerBackend.UI.Controllers
 			else
 			{
 				return Ok(challenge);
+			}
+		}
+
+		/// <summary>
+		/// Endpoint for updating a challenge entity in data store
+		/// </summary>
+		/// <param name="UpdateChallengeRequest">Challenge data to update</param>
+		/// <returns>On success the updated challenge</returns>
+		[HttpPost]
+		[Route("editchallenge")]
+		public async Task<IActionResult> EditChallenge(UpdateChallengeRequest UpdateChallengeRequest)
+		{
+			// Validation
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+
+			// Call service for editing challenge
+			ChallengeResponse response = await _challengeUpdateService.EditChallenge(UpdateChallengeRequest);
+
+			// Check if response is null
+			if (response == null)
+			{
+				return NoContent();
+			}
+			else
+			{
+				return Ok(response);
 			}
 		}
 	}

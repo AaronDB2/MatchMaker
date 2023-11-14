@@ -98,7 +98,7 @@ namespace MatchMakerBackend.RepositoryTests
 			Question result = await _questionRepository.UpdateQuestion(updateQuestion);
 
 			// Assert
-			Assert.Equal(result, updateQuestion);
+			Assert.Equal(result.QuestionTitle, updateQuestion.QuestionTitle);
 		}
 	}
 }
