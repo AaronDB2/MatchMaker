@@ -12,7 +12,7 @@ namespace MatchMakerBackend.Core.ServiceContracts
 		/// <summary>
 		/// Calls repository for creating a new tag entity
 		/// </summary>
-		/// <param name="createTagRequest">Data to create a new tag for</param>
+		/// <param name="createTagRequest">Data to create a new tag from</param>
 		/// <returns>Created tag</returns>
 		Task<TagResponse> AddTag(CreateTagRequest? createTagRequest);
 	}
