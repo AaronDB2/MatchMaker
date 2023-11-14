@@ -16,15 +16,16 @@ import {
   QuestionUserName,
 } from "./challenge.styles";
 
+import { NavLink } from "../navigation/navigation.styles";
+
 // Challenge Page
 const Challenge = () => {
   // Define local state
   const [challenge, setChallenge] = useState();
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [challengeQuestions, setChallengeQuestions] = useState([]);
-  console.log(challengeQuestions);
   // FIX TYPO
-  const { challendeId } = useParams();
+  const { challengeId } = useParams();
 
   // Decode the Jwt token
   const decodedToken = jwtDecode(localStorage["token"]);
@@ -33,7 +34,7 @@ const Challenge = () => {
   useEffect(() => {
     // Send request to get challege by id and set challenge state with the response
     axios
-      .get(`http://localhost:5063/api/challenge/${challendeId}`)
+      .get(`http://localhost:5063/api/challenge/${challengeId}`)
       .then(function (response) {
         setChallenge(response.data);
       })
@@ -46,7 +47,7 @@ const Challenge = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5063/api/question?searchBy=questionId&searchString=${challendeId}`
+        `http://localhost:5063/api/question?searchBy=questionId&searchString=${challengeId}`
       )
       .then(function (response) {
         setChallengeQuestions(response.data);
@@ -97,6 +98,9 @@ const Challenge = () => {
             <ChallengeDescription>
               {challenge["challengeDescription"]}
             </ChallengeDescription>
+            <NavLink to={`/challenge/${challengeId}/edit`}>
+              Edit Challenge
+            </NavLink>
           </Fragment>
         ) : null}
         {token ? (

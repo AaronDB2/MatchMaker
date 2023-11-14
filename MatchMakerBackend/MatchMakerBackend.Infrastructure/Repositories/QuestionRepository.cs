@@ -67,7 +67,9 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 			if (matchingQuestion == null) return question;
 
 			// Update courseText and CourseFileName
-			matchingQuestion = question;
+			matchingQuestion.QuestionDescription = question.QuestionDescription;
+			matchingQuestion.QuestionTitle = question.QuestionTitle;
+			matchingQuestion.User = question.User;
 
 			await _db.SaveChangesAsync();
 
