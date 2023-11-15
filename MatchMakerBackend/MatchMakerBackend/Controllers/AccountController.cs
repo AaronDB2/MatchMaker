@@ -222,6 +222,11 @@ namespace MatchMakerBackend.UI.Controllers
 			}
 		}
 
+		/// <summary>
+		/// Endpont for adding tags to user entity
+		/// </summary>
+		/// <param name="userTagRequest">Tag to add to the user</param>
+		/// <returns>On success the name of the added tag</returns>
 		[HttpPost]
 		[Route("usertag")]
 		public async Task<IActionResult> AddUserTag(UserTagRequest userTagRequest)

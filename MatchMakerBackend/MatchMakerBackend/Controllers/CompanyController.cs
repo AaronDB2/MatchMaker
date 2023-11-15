@@ -10,9 +10,16 @@ namespace MatchMakerBackend.UI.Controllers
 	public class CompanyController : ControllerBase
 	{
 		private readonly ICompanyAdderService _companyAdderService;
+		private readonly ITagGetterService _tagGetterService;
+
 		// Constructor
-		public CompanyController(ICompanyAdderService companyAdderService) {
+		public CompanyController(
+			ICompanyAdderService companyAdderService,
+			ITagGetterService tagGetterService
+		) 
+		{
 			_companyAdderService = companyAdderService;
+			_tagGetterService = tagGetterService;
 		}
 
 		/// <summary>
@@ -31,9 +38,29 @@ namespace MatchMakerBackend.UI.Controllers
 				return Problem(errorMessage);
 			}
 
-			CompanyResponse response = await _companyAdderService.AddCompany(createCompanyRequest);
+			if (createCompanyRequest.TagName != null)
+			{
+				// Find tag that matches the name
+				// (should change this to a get name method instead of filter)
+				List<TagResponse?>? tagResponse = await _tagGetterService.GetFilterdTags("TagName", createCompanyRequest.TagName);
 
-			return Ok(response);
+				// Check if tag had been found
+				if (tagResponse[0] == null)
+				{
+					return NoContent();
+				} else
+				{
+					CompanyResponse responseWithTag = await _companyAdderService.AddCompany(createCompanyRequest, tagResponse[0].Tag);
+
+					return Ok(responseWithTag.CompanyName);
+				}
+			} else
+			{
+				// Create company without tag
+				CompanyResponse response = await _companyAdderService.AddCompany(createCompanyRequest);
+
+				return Ok(response.CompanyName);
+			}
 		}
 	}
 }

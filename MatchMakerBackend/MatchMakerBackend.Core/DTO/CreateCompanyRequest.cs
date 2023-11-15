@@ -19,11 +19,13 @@ namespace MatchMakerBackend.Core.DTO
 		[Required(ErrorMessage = "Description can't be blank")]
 		public string CompanyDescription { get; set; }
 
+		public string? TagName { get; set; }
+
 		/// <summary>
 		/// Converts DTO object to Company entity
 		/// </summary>
 		/// <returns>Company object with DTO data</returns>
-		public Company ToCompany()
+		public Company ToCompany(Tag tag = null)
 		{
 			return new Company() { CompanyName = CompanyName, CompanyDescription = CompanyDescription };
 		}
