@@ -16,19 +16,22 @@ namespace MatchMakerBackend.UI.Controllers
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly IJwtService _jwtService;
 		private readonly ICompanyGetterService _companyGetterService;
+		private readonly ITagGetterService _tagGetterService;
 
 		// Constructor
 		public AccountController(
 			UserManager<ApplicationUser> userManager, 
 			SignInManager<ApplicationUser> signInManager, 
 			IJwtService jwtService,
-			ICompanyGetterService companyGetterService
+			ICompanyGetterService companyGetterService,
+			ITagGetterService tagGetterService
 		)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_jwtService = jwtService;
 			_companyGetterService = companyGetterService;
+			_tagGetterService = tagGetterService;
 		}
 
 		/// <summary>
@@ -217,6 +220,57 @@ namespace MatchMakerBackend.UI.Controllers
 			{
 				return Problem("Account is invalid");
 			}
+		}
+
+		/// <summary>
+		/// Endpont for adding tags to user entity
+		/// </summary>
+		/// <param name="userTagRequest">Tag to add to the user</param>
+		/// <returns>On success the name of the added tag</returns>
+		[HttpPost]
+		[Route("usertag")]
+		public async Task<IActionResult> AddUserTag(UserTagRequest userTagRequest)
+		{
+			//Validation
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+
+			// Find user
+			ApplicationUser? user = await _userManager.FindByNameAsync(userTagRequest.UserName);
+
+			// Check if user had been found
+			if (user == null)
+			{
+				return NoContent();
+			}
+
+			// Find tag that matches the name
+			// (should change this to a get name method instead of filter)
+			List<TagResponse?>? tagResponse = await _tagGetterService.GetFilterdTags("TagName", userTagRequest.TagName);
+
+			// Check if tag had been found
+			if (tagResponse[0] == null)
+			{
+				return NoContent();
+			}
+
+			// Add tag to user
+			user.Tags.Add(tagResponse[0].Tag);
+
+			IdentityResult result = await _userManager.UpdateAsync(user);
+
+			if (result.Succeeded)
+			{
+				return Ok(tagResponse[0].TagName);
+			} else
+			{
+				return Problem("Cant add tag to user");
+			}
+
+
 		}
 	}
 }

@@ -32,6 +32,7 @@ builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<ICompanyAdderService, CompanyAdderService>();
 builder.Services.AddScoped<ICompanyGetterService, CompanyGetterService>();
 builder.Services.AddScoped<ITagAdderService, TagAdderService>();
+builder.Services.AddScoped<ITagGetterService, TagGetterService>();
 builder.Services.AddScoped<IChallengeAdderService, ChallengeAdderService>();
 builder.Services.AddScoped<IChallengeGetterService, ChallengeGetterService>();
 builder.Services.AddScoped<IChallengeUpdateService, ChallengeUpdateService>();

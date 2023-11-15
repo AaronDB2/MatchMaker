@@ -23,13 +23,19 @@ namespace MatchMakerBackend.Core.Services
 			_companyRepository = companyRepository;
 		}
 
-		public async Task<CompanyResponse> AddCompany(CreateCompanyRequest? createCompanyRequest)
+		public async Task<CompanyResponse> AddCompany(CreateCompanyRequest? createCompanyRequest, Tag tag = null)
 		{
 			// Convert response to company
 			Company company = createCompanyRequest.ToCompany();
 
 			//generate company Id
 			company.Id = Guid.NewGuid();
+
+			// Add tag
+			if (tag != null)
+			{
+				company.Tags.Add(tag);
+			}
 
 			// Add company to data store
 			await _companyRepository.AddCompany(company);

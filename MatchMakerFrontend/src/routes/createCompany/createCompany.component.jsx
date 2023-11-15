@@ -16,6 +16,7 @@ const CreateCompany = () => {
     var body = {
       CompanyName: e.target.CompanyName.value,
       CompanyDescription: e.target.CompanyDescription.value,
+      TagName: e.target.TagName.value,
     };
 
     // Send request
@@ -34,6 +35,7 @@ const CreateCompany = () => {
 
     e.target.CompanyName.value = "";
     e.target.CompanyDescription.value = "";
+    e.target.TagName.value = "";
   };
 
   return (
@@ -50,6 +52,8 @@ const CreateCompany = () => {
             rows="10"
             cols="50"
           />
+          <label for="tag-name">Tag:</label>
+          <input type="text" id="tag-name" name="TagName" />
           <input type="submit" value="Submit" />
         </CreateCompanyForm>
       </CreateCompanyContainer>
