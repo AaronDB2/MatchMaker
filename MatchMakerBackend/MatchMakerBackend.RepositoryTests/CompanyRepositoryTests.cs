@@ -100,5 +100,15 @@ namespace MatchMakerBackend.RepositoryTests
 			// Assert
 			Assert.Equal(result.CompanyName, updateCompany.CompanyName);
 		}
+
+		[Fact]
+		public async Task GetCompanyByCompanyName_ShouldGetCompanyByGivenName_IfExistsInDataStoreAndNameIsValid()
+		{
+			// Act
+			Company result = await _companyRepository.GetCompanyByCompanyName(testCompany.CompanyName);
+
+			// Assert
+			Assert.Equal(result.CompanyName, testCompany.CompanyName);
+		}
 	}
 }

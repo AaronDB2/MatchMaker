@@ -23,6 +23,7 @@ namespace MatchMakerBackend.ServiceTests
 		private readonly IFixture _fixture;
 		private readonly ICompanyRepository _companyRepository;
 		private readonly ICompanyAdderService _companyAdderService;
+		private readonly ICompanyGetterService _companyGetterService;
 
 		private readonly Mock<ICompanyRepository> _companyRepositoryMock;
 
@@ -41,6 +42,7 @@ namespace MatchMakerBackend.ServiceTests
 
 			// Initialize services
 			_companyAdderService = new CompanyAdderService(_companyRepository);
+			_companyGetterService = new CompanyGetterService(_companyRepository);
 		}
 
 		[Fact]
@@ -65,6 +67,25 @@ namespace MatchMakerBackend.ServiceTests
 
 			//Assert
 			result.CompanyName.Should().Be(companyResponse.CompanyName);
+
+		}
+
+		[Fact]
+		public async Task GetCompanyByCompanyName_ShouldGetCompanieByName_IfThereAreCompaniesThatMatchTheGivenName()
+		{
+			//Arrange
+			Company company = _fixture.Create<Company>();
+
+			//Mock GetCompanyByCompanyName method from CompanyRepository 
+			_companyRepositoryMock.Setup
+			 (temp => temp.GetCompanyByCompanyName(It.IsAny<string>()))
+			 .ReturnsAsync(company);
+
+			//Act
+			CompanyResponse result = await _companyGetterService.GetCompanyByCompanyName(company.CompanyName);
+
+			//Assert
+			result.CompanyName.Should().Be(company.CompanyName);
 
 		}
 	}
