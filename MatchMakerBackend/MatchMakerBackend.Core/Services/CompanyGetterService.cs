@@ -26,7 +26,7 @@ namespace MatchMakerBackend.Core.Services
 			// Get company that matches companyName
 			Company company = await _companyRepository.GetCompanyByCompanyName(companyName);
 
-			// Check if there was a course found for given id
+			// Check if there was a company found for given id
 			if (company == null) throw new ArgumentNullException();
 
 			// Make response

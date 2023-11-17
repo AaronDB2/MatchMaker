@@ -1,4 +1,5 @@
-﻿using MatchMakerBackend.Core.Domain.IdentityEntities;
+﻿using MatchMakerBackend.Core.Domain.Entities;
+using MatchMakerBackend.Core.Domain.IdentityEntities;
 using MatchMakerBackend.Core.DTO;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,6 @@ namespace MatchMakerBackend.Core.ServiceContracts
 		/// </summary>
 		/// <param name="createCompanyRequest">Data to create a new company from</param>
 		/// <returns>Created company</returns>
-		Task<CompanyResponse> AddCompany(CreateCompanyRequest? createCompanyRequest);
+		Task<CompanyResponse> AddCompany(CreateCompanyRequest? createCompanyRequest, Tag tag = null);
 	}
 }

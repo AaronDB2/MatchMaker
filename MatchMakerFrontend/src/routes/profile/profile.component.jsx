@@ -87,6 +87,35 @@ const Profile = () => {
     e.target.CompanyName.value = "";
   };
 
+  // Handles submit event of the tag form
+  const handleSubmitTag = (e) => {
+    e.preventDefault();
+    // Prepare request body
+    var body = {
+      TagName: e.target.TagName.value,
+      UserName:
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+        ],
+    };
+
+    // Send request
+    axios
+      .post("http://localhost:5063/api/account/usertag", body, {
+        headers: {
+          Authorization: "Bearer " + localStorage["token"],
+        },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    e.target.TagName.value = "";
+  };
+
   return (
     <PageBody>
       <ProfileContainer>
@@ -110,6 +139,11 @@ const Profile = () => {
         <EditDataForm onSubmit={handleSubmitUpdateCompany}>
           <label for="companyName">Company:</label>
           <input type="text" id="company" name="CompanyName" />
+          <input type="submit" value="Submit" />
+        </EditDataForm>
+        <EditDataForm onSubmit={handleSubmitTag}>
+          <label for="tag-name">Tag:</label>
+          <input type="text" id="tag-name" name="TagName" />
           <input type="submit" value="Submit" />
         </EditDataForm>
         <NavLink to="/create-company">CREATE COMPANY</NavLink>
