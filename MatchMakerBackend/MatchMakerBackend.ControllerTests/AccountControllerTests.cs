@@ -109,5 +109,58 @@ namespace MatchMakerBackend.ControllerTests
 			// Assert
 			Assert.IsType<OkObjectResult>(result);
 		}
+
+		[Fact]
+		public async void CreateUserAccount_ShouldReturnOkResponseWhenProvidedWithCorrectValues()
+		{
+			// Arrange
+			RegisterDTO registerDTO = _fixture.Create<RegisterDTO>();
+
+			//Mock CreateAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.CreateAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>()))
+			 .ReturnsAsync(IdentityResult.Success);
+
+			//Mock AddToRoleAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.AddToRoleAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>()))
+			 .ReturnsAsync(IdentityResult.Success);
+
+			// Act
+			var result = await _accountController.CreateUserAccount(registerDTO);
+
+			// Assert
+			Assert.IsType<OkObjectResult>(result);
+		}
+
+		[Fact]
+		public async void UpdateUserCompany_ShouldReturnOkResponseWhenProvidedWithCorrectValues()
+		{
+			// Arrange
+			UpdateUserCompanyRequest requestDTO = _fixture.Create<UpdateUserCompanyRequest>();
+			ApplicationUser user = _fixture.Create<ApplicationUser>();
+			CompanyResponse companyResponse = _fixture.Create<CompanyResponse>();
+
+			//Mock FindByNameAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.FindByNameAsync(It.IsAny<string>()))
+			 .ReturnsAsync(user);
+
+			//Mock GetCompanyByCompanyName method from CompanyGetterService
+			_companyGetterServiceMock.Setup
+			 (temp => temp.GetCompanyByCompanyName(It.IsAny<string>()))
+			 .ReturnsAsync(companyResponse);
+
+			//Mock UpdateAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.UpdateAsync(It.IsAny<ApplicationUser>()))
+			 .ReturnsAsync(IdentityResult.Success);
+
+			// Act
+			var result = await _accountController.UpdateUserCompany(requestDTO);
+
+			// Assert
+			Assert.IsType<OkObjectResult>(result);
+		}
 	}
 }
