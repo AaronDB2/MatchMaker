@@ -63,8 +63,9 @@ namespace MatchMakerBackend.UI.Controllers
 			// Check if sign in was a success
 			if (result.Succeeded)
 			{
+				var roles = await _userManager.GetRolesAsync(user);
 				// Create Jwt token
-				var authenticationResponse = _jwtService.CreateJwtToken(user);
+				var authenticationResponse = _jwtService.CreateJwtToken(user, roles);
 
 				return Ok(authenticationResponse);
 			}
@@ -112,8 +113,9 @@ namespace MatchMakerBackend.UI.Controllers
 			// Check if password change was success
 			if (result.Succeeded)
 			{
+				var roles = await _userManager.GetRolesAsync(user);
 				// Create Jwt token
-				var authenticationResponse = _jwtService.CreateJwtToken(user);
+				var authenticationResponse = _jwtService.CreateJwtToken(user, roles);
 
 				return Ok(authenticationResponse);
 			}

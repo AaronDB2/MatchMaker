@@ -16,15 +16,7 @@ export const PageTitle = styled.h1`
 `;
 
 export const LoginForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  max-width: 880px;
-
-  label {
-    padding-top: 1rem;
-  }
-
-  input[type="submit"] {
-    margin: 1rem 0;
-  }
+  border: solid black 1px;
+  padding: 10rem;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
 `;

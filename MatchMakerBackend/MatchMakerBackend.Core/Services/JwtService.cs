@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.SymbolStore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -30,11 +31,11 @@ namespace MatchMakerBackend.Core.Services
 		/// </summary>
 		/// <param name="user">Application user to generate the token for</param>
 		/// <returns>Authentication response</returns>
-		public AuthenticationResponse CreateJwtToken(ApplicationUser user)
+		public AuthenticationResponse CreateJwtToken(ApplicationUser user, IList<string> roles)
 		{
 			DateTime expiration = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:EXPIRATION_MINUTES"]));
 
-			Claim[] claims = new Claim[]
+			List<Claim> claims = new List<Claim>()
 			{
 				new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
 				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
@@ -42,6 +43,12 @@ namespace MatchMakerBackend.Core.Services
 				new Claim(ClaimTypes.NameIdentifier, user.Email), //Optional
 				new Claim(ClaimTypes.Name, user.UserName) // Optional
 			};
+
+			// Loop over user roles
+			foreach (var role in roles)
+			{
+				claims.Add(new Claim(ClaimTypes.Role, role));
+			}
 
 			SymmetricSecurityKey securityKey = new SymmetricSecurityKey(
 				Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

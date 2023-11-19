@@ -11,6 +11,11 @@ export const NavigationContainer = styled.div`
   div:first-child {
     margin-right: auto;
   }
+
+  a:hover,
+  a:active {
+    text-decoration: underline;
+  }
 `;
 
 export const LogoContainer = styled.div``;
@@ -28,4 +33,9 @@ export const NavFooterContainer = styled.div`
   border-top: solid black 2px;
   padding: 0.5rem 0;
   grid-area: footer;
+
+  a:hover,
+  a:active {
+    text-decoration: underline;
+  }
 `;

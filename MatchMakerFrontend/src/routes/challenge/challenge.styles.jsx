@@ -19,19 +19,7 @@ export const ChallengeDescription = styled.p`
   text-align: center;
 `;
 
-export const QuestionForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  max-width: 880px;
-
-  label {
-    padding-top: 1rem;
-  }
-
-  input[type="submit"] {
-    margin: 1rem 0;
-  }
-`;
+export const QuestionForm = styled.form``;
 
 export const QuestionDisplayContainer = styled.div``;
 
