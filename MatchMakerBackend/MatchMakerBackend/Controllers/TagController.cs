@@ -1,7 +1,9 @@
 ﻿using MatchMakerBackend.Core.DTO;
 using MatchMakerBackend.Core.ServiceContracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace MatchMakerBackend.UI.Controllers
 {
@@ -23,6 +25,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>On success the created tag</returns>
 		[HttpPost]
 		[Route("createTag")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> CreateTag(CreateTagRequest createTagRequest)
 		{
 			//Validation

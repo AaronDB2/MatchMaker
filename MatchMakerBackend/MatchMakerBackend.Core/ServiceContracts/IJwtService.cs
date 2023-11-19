@@ -17,7 +17,8 @@ namespace MatchMakerBackend.Core.ServiceContracts
 		/// Creates Jwt token
 		/// </summary>
 		/// <param name="user">Application user object to create token for</param>
+		/// <param name="roles">List of roles the user has</param>
 		/// <returns>Authentication response</returns>
-		AuthenticationResponse CreateJwtToken(ApplicationUser user);
+		AuthenticationResponse CreateJwtToken(ApplicationUser user, IList<string> roles);
 	}
 }

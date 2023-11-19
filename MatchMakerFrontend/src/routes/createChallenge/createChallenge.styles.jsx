@@ -15,16 +15,4 @@ export const PageTitle = styled.h1`
   text-align: center;
 `;
 
-export const CreateChallengeForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  max-width: 880px;
-
-  label {
-    padding-top: 1rem;
-  }
-
-  input[type="submit"] {
-    margin: 1rem 0;
-  }
-`;
+export const CreateChallengeForm = styled.form``;

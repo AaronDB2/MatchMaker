@@ -31,4 +31,18 @@ export const GlobalStyle = createGlobalStyle`
     "footer";
     height: 100%;
   }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 880px;
+
+    label {
+      padding-top: 1rem;
+    }
+
+    input[type="submit"] {
+      margin: 1rem 0;
+    }
+  }
 `;

@@ -23,11 +23,13 @@ namespace MatchMakerBackend.ControllerTests
 		private readonly Mock<SignInManager<ApplicationUser>> _signInManagerMock;
 		private readonly Mock<IJwtService> _jwtServiceMock;
 		private readonly Mock<ICompanyGetterService> _companyGetterServiceMock;
+		private readonly Mock<ITagGetterService> _tagGetterServiceMock;
 
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly IJwtService _jwtService;
 		private readonly ICompanyGetterService _companyGetterService;
+		private readonly ITagGetterService _tagGetterService;
 		private readonly IFixture _fixture;
 
 		public AccountControllerTests()
@@ -53,7 +55,10 @@ namespace MatchMakerBackend.ControllerTests
 			_companyGetterServiceMock = new Mock<ICompanyGetterService>();
 			_companyGetterService = _companyGetterServiceMock.Object;
 
-			_accountController = new AccountController(_userManager, _signInManager, _jwtService, _companyGetterService);
+			_tagGetterServiceMock = new Mock<ITagGetterService>();
+			_tagGetterService = _tagGetterServiceMock.Object;
+
+			_accountController = new AccountController(_userManager, _signInManager, _jwtService, _companyGetterService, _tagGetterService);
 		}
 
 		[Fact]
@@ -100,7 +105,7 @@ namespace MatchMakerBackend.ControllerTests
 
 			//Mock CreateJwtToken method from jwtService
 			_jwtServiceMock.Setup
-			 (temp => temp.CreateJwtToken(It.IsAny<ApplicationUser>()))
+			 (temp => temp.CreateJwtToken(It.IsAny<ApplicationUser>(), It.IsAny<IList<string>>()))
 			 .Returns(responseDTO);
 
 			// Act

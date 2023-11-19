@@ -7,6 +7,8 @@ import {
   EditDataForm,
   ProfileContainer,
   NavLink,
+  EditDataContainer,
+  ButtonContainer,
 } from "./profile.styles";
 
 // Profile page component
@@ -127,29 +129,53 @@ const Profile = () => {
             ]
           }
         </PageTitle>
-        <EditDataForm onSubmit={handleSubmitUpdatePassword}>
-          <label for="currentPassword">Current Password:</label>
-          <input type="password" id="currentPassword" name="CurrentPassword" />
-          <label for="password">New Password:</label>
-          <input type="password" id="password" name="Password" />
-          <label for="confirmPassword">Confirm Password:</label>
-          <input type="password" id="confirmPassword" name="ConfirmPassword" />
-          <input type="submit" value="Submit" />
-        </EditDataForm>
-        <EditDataForm onSubmit={handleSubmitUpdateCompany}>
-          <label for="companyName">Company:</label>
-          <input type="text" id="company" name="CompanyName" />
-          <input type="submit" value="Submit" />
-        </EditDataForm>
-        <EditDataForm onSubmit={handleSubmitTag}>
-          <label for="tag-name">Tag:</label>
-          <input type="text" id="tag-name" name="TagName" />
-          <input type="submit" value="Submit" />
-        </EditDataForm>
-        <NavLink to="/create-company">CREATE COMPANY</NavLink>
-        <NavLink to="/create-tag">CREATE TAG</NavLink>
-        <NavLink to="/create-challenge">CREATE CHALLENGE</NavLink>
-        <NavLink to="/create-account">CREATE ACCOUNT</NavLink>
+        <EditDataContainer>
+          <div>
+            <h3>Update Password</h3>
+            <EditDataForm onSubmit={handleSubmitUpdatePassword}>
+              <label for="currentPassword">Current Password:</label>
+              <input
+                type="password"
+                id="currentPassword"
+                name="CurrentPassword"
+              />
+              <label for="password">New Password:</label>
+              <input type="password" id="password" name="Password" />
+              <label for="confirmPassword">Confirm Password:</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="ConfirmPassword"
+              />
+              <input type="submit" value="Submit" />
+            </EditDataForm>
+          </div>
+          <div>
+            <h3>Add your company</h3>
+            <EditDataForm onSubmit={handleSubmitUpdateCompany}>
+              <label for="companyName">Company:</label>
+              <input type="text" id="company" name="CompanyName" />
+              <input type="submit" value="Submit" />
+            </EditDataForm>
+          </div>
+          <div>
+            <h3>Add tags</h3>
+            <EditDataForm onSubmit={handleSubmitTag}>
+              <label for="tag-name">Tag:</label>
+              <input type="text" id="tag-name" name="TagName" />
+              <input type="submit" value="Submit" />
+            </EditDataForm>
+          </div>
+        </EditDataContainer>
+        <ButtonContainer>
+          <h2>Create New Entities</h2>
+          <div>
+            <NavLink to="/create-company">CREATE COMPANY</NavLink>
+            <NavLink to="/create-tag">CREATE TAG</NavLink>
+            <NavLink to="/create-challenge">CREATE CHALLENGE</NavLink>
+            <NavLink to="/create-account">CREATE ACCOUNT</NavLink>
+          </div>
+        </ButtonContainer>
       </ProfileContainer>
     </PageBody>
   );
