@@ -1,3 +1,4 @@
+import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -10,25 +11,33 @@ import {
 
 // Edit challenge page
 const EditChallenge = () => {
+  // Set local state
+  const [file, setFile] = useState();
   const { challengeId } = useParams();
 
   // Handles edit challenge form submit event
   const handleSubmit = (e) => {
     e.preventDefault();
     // Prepare request body
-    var body = {
-      ChallengeId: challengeId,
-      ChallengeTitle: e.target.ChallengeTitle.value,
-      ChallengeDescription: e.target.ChallengeDescription.value,
-      ChallengeFile: e.target.ChallengeFile.value,
-      ChallengeViewStatus: e.target.ChallengeViewStatus.value,
-      ChallengeProgressionStatus: e.target.ChallengeProgressionStatus.value,
-      EndDate: e.target.EndDate.value,
-    };
+    const formData = new FormData();
+    formData.append("ChallengeId", challengeId);
+    formData.append("UploadChallengeFile", file);
+    formData.append("ChallengeTitle", e.target.ChallengeTitle.value);
+    formData.append(
+      "ChallengeDescription",
+      e.target.ChallengeDescription.value
+    );
+
+    formData.append("ChallengeViewStatus", e.target.ChallengeViewStatus.value);
+    formData.append(
+      "ChallengeProgressionStatus",
+      e.target.ChallengeProgressionStatus.value
+    );
+    formData.append("EndDate", e.target.EndDate.value);
 
     // Send request
     axios
-      .post("http://localhost:5063/api/challenge/editchallenge", body, {
+      .post("http://localhost:5063/api/challenge/editchallenge", formData, {
         headers: {
           Authorization: "Bearer " + localStorage["token"],
         },
@@ -48,11 +57,19 @@ const EditChallenge = () => {
     e.target.EndDate.value = "";
   };
 
+  // Set the file state
+  const saveFile = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   return (
     <PageBody>
       <EditChallengeContainer>
         <PageTitle>Edit Challenge: {challengeId}</PageTitle>
-        <EditChallengeForm onSubmit={handleSubmit}>
+        <EditChallengeForm
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
           <label for="challengeTitle">Challenge Title:</label>
           <input type="text" id="challengetitle" name="ChallengeTitle" />
           <label for="challengedescription">Description:</label>
@@ -63,7 +80,12 @@ const EditChallenge = () => {
             cols="50"
           />
           <label for="challengeFile">Challenge File:</label>
-          <input type="text" id="challengefile" name="ChallengeFile" />
+          <input
+            type="file"
+            id="challengefile"
+            name="ChallengeFile"
+            onChange={saveFile}
+          />
           <label for="challengeViewStatus">View Status:</label>
           <input
             type="text"
