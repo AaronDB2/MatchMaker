@@ -1,5 +1,6 @@
 ﻿using MatchMakerBackend.Core.Domain.Entities;
 using MatchMakerBackend.Core.Domain.IdentityEntities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,14 @@ namespace MatchMakerBackend.Core.DTO
 
 		public string ChallengeDescription { get; set; }
 
-		public string ChallengeFile { get; set; }
+		public string? ChallengeFile { get; set; }
 
 		public string ChallengeViewStatus { get; set; }
 
 		public string ChallengeProgressionStatus { get; set; }
 
 		public DateTime EndDate { get; set; }
+		public IFormFile? UploadChallengeFile { get; set; }
 
 		/// <summary>
 		/// Converts Request to Challenge model

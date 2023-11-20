@@ -1,3 +1,4 @@
+import { useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
@@ -11,11 +12,16 @@ import {
 // Gets current date
 function getDate() {
   const today = new Date();
-  return today;
+  return `${today.getDate()}-${
+    today.getMonth() + 1
+  }-${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 }
 
 // Create challenge page
 const CreateChallenge = () => {
+  // Set local state
+  const [file, setFile] = useState();
+
   // Decode the Jwt token
   const decodedToken = jwtDecode(localStorage["token"]);
 
@@ -23,23 +29,29 @@ const CreateChallenge = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Prepare request body
-    var body = {
-      ChallengeTitle: e.target.ChallengeTitle.value,
-      ChallengeDescription: e.target.ChallengeDescription.value,
-      ChallengeFile: e.target.ChallengeFile.value,
-      ChallengeViewStatus: e.target.ChallengeViewStatus.value,
-      ChallengeProgressionStatus: e.target.ChallengeProgressionStatus.value,
-      EndDate: e.target.EndDate.value,
-      UserName:
-        decodedToken[
-          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-        ],
-      DateSubmitted: getDate(),
-    };
+    const formData = new FormData();
+    formData.append("UploadChallengeFile", file);
+    formData.append("ChallengeTitle", e.target.ChallengeTitle.value);
+    formData.append(
+      "ChallengeDescription",
+      e.target.ChallengeDescription.value
+    );
+
+    formData.append("ChallengeViewStatus", e.target.ChallengeViewStatus.value);
+    formData.append(
+      "ChallengeProgressionStatus",
+      e.target.ChallengeProgressionStatus.value
+    );
+    formData.append("EndDate", e.target.EndDate.value);
+    formData.append("DateSubmitted", getDate());
+    formData.append(
+      "UserName",
+      decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+    );
 
     // Send request
     axios
-      .post("http://localhost:5063/api/Challenge/createChallenge", body, {
+      .post("http://localhost:5063/api/Challenge/createChallenge", formData, {
         headers: {
           Authorization: "Bearer " + localStorage["token"],
         },
@@ -59,11 +71,19 @@ const CreateChallenge = () => {
     e.target.EndDate.value = "";
   };
 
+  // Set the file state
+  const saveFile = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   return (
     <PageBody>
       <CreateChallengeContainer>
         <PageTitle>Create Challenge</PageTitle>
-        <CreateChallengeForm onSubmit={handleSubmit}>
+        <CreateChallengeForm
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
           <label for="challengeTitle">Challenge Title:</label>
           <input type="text" id="challengetitle" name="ChallengeTitle" />
           <label for="challengedescription">Description:</label>
@@ -74,7 +94,12 @@ const CreateChallenge = () => {
             cols="50"
           />
           <label for="challengeFile">Challenge File:</label>
-          <input type="text" id="challengefile" name="ChallengeFile" />
+          <input
+            type="file"
+            id="challengefile"
+            name="ChallengeFile"
+            onChange={saveFile}
+          />
           <label for="challengeViewStatus">View Status:</label>
           <input
             type="text"

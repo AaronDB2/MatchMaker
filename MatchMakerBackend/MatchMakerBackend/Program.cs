@@ -46,6 +46,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddTransient<IJwtService, JwtService>();
+builder.Services.AddScoped<IFileService, FileService>();
 
 // Configure identity
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => {
@@ -99,7 +100,7 @@ var app = builder.Build();
 // create application pipeline
 //app.UseHsts();
 //app.UseHttpsRedirection();
-//app.UseStaticFiles();
+app.UseStaticFiles();
 app.UseRouting(); // Middleware for routing
 app.UseCors(); // Middleware for enabling CORS
 app.UseAuthentication(); // Middleware for reading authentication cookie

@@ -17,19 +17,22 @@ namespace MatchMakerBackend.UI.Controllers
 		private readonly IChallengeAdderService _challengeAdderService;
 		private readonly IChallengeGetterService _challengeGetterService;
 		private readonly IChallengeUpdateService _challengeUpdateService;
+		private readonly IFileService _fileService;
 
 		// Constructor
 		public ChallengeController(
 			UserManager<ApplicationUser> userManager, 
 			IChallengeAdderService challengeAdderService,
 			IChallengeGetterService challengeGetterService,
-			IChallengeUpdateService challengeUpdateService
+			IChallengeUpdateService challengeUpdateService,
+			IFileService fileService
 		) 
 		{ 
 			_userManager = userManager;
 			_challengeAdderService = challengeAdderService;
 			_challengeGetterService = challengeGetterService;
 			_challengeUpdateService = challengeUpdateService;
+			_fileService = fileService;
 		}
 
 		/// <summary>
@@ -39,7 +42,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>If success returns the challenge that was created</returns>
 		[HttpPost]
 		[Route("createChallenge")]
-		public async Task<IActionResult> CreateChallenge(CreateChallengeRequest createChallengeRequest)
+		public async Task<IActionResult> CreateChallenge([FromForm] CreateChallengeRequest createChallengeRequest)
 		{
 			// Validation
 			if (!ModelState.IsValid)
@@ -47,6 +50,11 @@ namespace MatchMakerBackend.UI.Controllers
 				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
 				return Problem(errorMessage);
 			}
+
+			// Add Filename to createChallengeRequest
+			createChallengeRequest.ChallengeFile = createChallengeRequest.UploadChallengeFile.FileName;
+
+			await _fileService.UploadFile(createChallengeRequest.UploadChallengeFile);
 
 			// Get user by username
 			ApplicationUser? user = await _userManager.FindByNameAsync(createChallengeRequest.UserName);
@@ -139,7 +147,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>On success the updated challenge</returns>
 		[HttpPost]
 		[Route("editchallenge")]
-		public async Task<IActionResult> EditChallenge(UpdateChallengeRequest UpdateChallengeRequest)
+		public async Task<IActionResult> EditChallenge([FromForm] UpdateChallengeRequest updateChallengeRequest)
 		{
 			// Validation
 			if (!ModelState.IsValid)
@@ -148,8 +156,13 @@ namespace MatchMakerBackend.UI.Controllers
 				return Problem(errorMessage);
 			}
 
+			// Add Filename to updateChallengeRequest
+			updateChallengeRequest.ChallengeFile = updateChallengeRequest.UploadChallengeFile.FileName;
+
+			await _fileService.UploadFile(updateChallengeRequest.UploadChallengeFile);
+
 			// Call service for editing challenge
-			ChallengeResponse response = await _challengeUpdateService.EditChallenge(UpdateChallengeRequest);
+			ChallengeResponse response = await _challengeUpdateService.EditChallenge(updateChallengeRequest);
 
 			// Check if response is null
 			if (response == null)
