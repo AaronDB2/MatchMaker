@@ -72,7 +72,7 @@ const CreateChallenge = () => {
   };
 
   // Set the file state
-  const saveFile = (e) => {
+  const saveFileChallenge = (e) => {
     setFile(e.target.files[0]);
   };
 
@@ -98,7 +98,7 @@ const CreateChallenge = () => {
             type="file"
             id="challengefile"
             name="ChallengeFile"
-            onChange={saveFile}
+            onChange={saveFileChallenge}
           />
           <label for="challengeViewStatus">View Status:</label>
           <input

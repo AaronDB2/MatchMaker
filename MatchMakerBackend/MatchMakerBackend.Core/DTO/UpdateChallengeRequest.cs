@@ -22,12 +22,17 @@ namespace MatchMakerBackend.Core.DTO
 
 		public string? ChallengeFile { get; set; }
 
+		public string? EndResultFileName { get; set; }
+
 		public string ChallengeViewStatus { get; set; }
 
 		public string ChallengeProgressionStatus { get; set; }
 
 		public DateTime EndDate { get; set; }
+
 		public IFormFile? UploadChallengeFile { get; set; }
+
+		public IFormFile? UploadEndResultFile { get; set; }
 
 		/// <summary>
 		/// Converts Request to Challenge model
@@ -41,6 +46,7 @@ namespace MatchMakerBackend.Core.DTO
 				ChallengeTitle = ChallengeTitle,
 				ChallengeDescription = ChallengeDescription,
 				ChallengeFileName = ChallengeFile,
+				ResultFileName = EndResultFileName,
 				ViewStatus = ChallengeViewStatus,
 				ProgressionStatus = ChallengeProgressionStatus,
 				EndDate = EndDate,

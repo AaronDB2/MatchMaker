@@ -159,7 +159,12 @@ namespace MatchMakerBackend.UI.Controllers
 			// Add Filename to updateChallengeRequest
 			updateChallengeRequest.ChallengeFile = updateChallengeRequest.UploadChallengeFile.FileName;
 
+			// Add EndResultFilename to updateChallengeRequest
+			updateChallengeRequest.EndResultFileName = updateChallengeRequest.UploadEndResultFile.FileName;
+
 			await _fileService.UploadFile(updateChallengeRequest.UploadChallengeFile);
+
+			await _fileService.UploadFile(updateChallengeRequest.UploadEndResultFile);
 
 			// Call service for editing challenge
 			ChallengeResponse response = await _challengeUpdateService.EditChallenge(updateChallengeRequest);
@@ -173,6 +178,21 @@ namespace MatchMakerBackend.UI.Controllers
 			{
 				return Ok(response);
 			}
+		}
+
+		/// <summary>
+		/// End point for downloading challenge files based on file name
+		/// </summary>
+		/// <param name="fileName">Name of the file to download</param>
+		/// <returns>File that matches the given file name</returns>
+		[HttpGet]
+		[Route("download/{filename}")]
+		[AllowAnonymous]
+		public async Task<IActionResult> Download(string fileName)
+		{
+			var stream = _fileService.Download(fileName);
+
+			return File(stream, "application/octet-stream", fileName);
 		}
 	}
 }

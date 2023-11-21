@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
+import fileDownload from "js-file-download";
 
 import {
   PageBody,
@@ -14,9 +15,12 @@ import {
   QuestionTitle,
   QuestionDescription,
   QuestionUserName,
+  Devider,
+  ChallengeId,
+  NavLink,
+  ChallengeInfoContainer,
+  ButtonContainer,
 } from "./challenge.styles";
-
-import { NavLink } from "../navigation/navigation.styles";
 
 // Challenge Page
 const Challenge = () => {
@@ -37,6 +41,7 @@ const Challenge = () => {
       .get(`http://localhost:5063/api/challenge/${challengeId}`)
       .then(function (response) {
         setChallenge(response.data);
+        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -89,22 +94,78 @@ const Challenge = () => {
     e.target.QuestionDescription.value = "";
   };
 
+  // Download challenge file function
+  const downloadChallengeFile = (e) => {
+    axios
+      .get(
+        `http://localhost:5063/api/challenge/download/${challenge["challengeFileName"]}`,
+        {
+          headers: {
+            responseType: "blob",
+          },
+        }
+      )
+      .then((response) => {
+        fileDownload(response.data, challenge["challengeFileName"]);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  // Download result file function
+  const downloadResultFile = (e) => {
+    axios
+      .get(
+        `http://localhost:5063/api/challenge/download/${challenge["endResultFileName"]}`,
+        {
+          headers: {
+            responseType: "blob",
+          },
+        }
+      )
+      .then((response) => {
+        fileDownload(response.data, challenge["endResultFileName"]);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <PageBody>
       <ChallengeContainer>
         {challenge ? (
           <Fragment>
             <PageTitle>{challenge["challengeTitle"]}</PageTitle>
+            <ChallengeId>ChallengeId: {challenge["challengeId"]}</ChallengeId>
+            <ChallengeInfoContainer>
+              <span>Contact Person Id: {challenge["contactPersonId"]}</span>
+              <span>Company Id: {challenge["companyId"]}</span>
+              <span>View Status: {challenge["viewStatus"]}</span>
+              <span>Progression Status: {challenge["progressionStatus"]}</span>
+              <span>Date Submitted: {challenge["dateSubmitted"]}</span>
+              <span>End Date: {challenge["endDate"]}</span>
+            </ChallengeInfoContainer>
+            <h2>Challenge Description</h2>
             <ChallengeDescription>
               {challenge["challengeDescription"]}
             </ChallengeDescription>
-            <NavLink to={`/challenge/${challengeId}/edit`}>
-              Edit Challenge
-            </NavLink>
+            <ButtonContainer>
+              <span onClick={downloadChallengeFile}>
+                Download Challenge File
+              </span>
+              <span onClick={downloadResultFile}>Download Result File</span>
+              <NavLink to={`/challenge/${challengeId}/edit`}>
+                Edit Challenge
+              </NavLink>
+            </ButtonContainer>
           </Fragment>
         ) : null}
+        <Devider></Devider>
         {token ? (
           <Fragment>
+            <h2>Ask A Question</h2>
             <QuestionForm onSubmit={handleSubmit}>
               <label for="questionTitle">Question Title</label>
               <input type="text" id="question-title" name="QuestionTitle" />
@@ -117,6 +178,7 @@ const Challenge = () => {
               <input type="submit" value="Submit" />
             </QuestionForm>
             <QuestionDisplayContainer>
+              <h2>Questions</h2>
               {challengeQuestions.map((question, index) => (
                 <Fragment key={index}>
                   <QuestionTitle>{question["questionTitle"]}</QuestionTitle>

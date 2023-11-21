@@ -13,6 +13,7 @@ import {
 const EditChallenge = () => {
   // Set local state
   const [file, setFile] = useState();
+  const [fileResult, setResultFile] = useState();
   const { challengeId } = useParams();
 
   // Handles edit challenge form submit event
@@ -21,6 +22,7 @@ const EditChallenge = () => {
     // Prepare request body
     const formData = new FormData();
     formData.append("ChallengeId", challengeId);
+    formData.append("UploadEndResultFile", fileResult);
     formData.append("UploadChallengeFile", file);
     formData.append("ChallengeTitle", e.target.ChallengeTitle.value);
     formData.append(
@@ -55,11 +57,17 @@ const EditChallenge = () => {
     e.target.ChallengeViewStatus.value = "";
     e.target.ChallengeProgressionStatus.value = "";
     e.target.EndDate.value = "";
+    e.target.ResultFile.value = "";
   };
 
   // Set the file state
-  const saveFile = (e) => {
+  const saveChallengeFile = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  // Set the file state
+  const saveFileEndResult = (e) => {
+    setResultFile(e.target.files[0]);
   };
 
   return (
@@ -84,7 +92,14 @@ const EditChallenge = () => {
             type="file"
             id="challengefile"
             name="ChallengeFile"
-            onChange={saveFile}
+            onChange={saveChallengeFile}
+          />
+          <label for="resultFile">End Result File:</label>
+          <input
+            type="file"
+            id="resultfile"
+            name="ResultFile"
+            onChange={saveFileEndResult}
           />
           <label for="challengeViewStatus">View Status:</label>
           <input
