@@ -57,6 +57,14 @@ namespace MatchMakerBackend.Core.Services
 				ChallengeId = challenge.Id,
 				ChallengeTitle = challenge.ChallengeTitle,
 				ChallengeDescription = challenge.ChallengeDescription,
+				ContactPersonId = challenge.ContactPerson.Id,
+				CompanyId = challenge.CompanyId,
+				ProgressionStatus = challenge.ProgressionStatus,
+				ViewStatus = challenge.ViewStatus,
+				DateSubmitted = challenge.DateSubmitted,
+				EndDate = challenge.EndDate,
+				ChallengeFileName = challenge.ChallengeFileName,
+				EndResultFileName = challenge.ResultFileName
 			};
 
 			return response;

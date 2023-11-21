@@ -16,5 +16,21 @@ namespace MatchMakerBackend.Core.DTO
 		public Guid? ChallengeId { get; set; }
 
 		public string? ChallengeDescription { get; set; }
+
+		public string? ChallengeFileName { get; set; }
+
+		public string? EndResultFileName { get;set; }
+
+		public string? ViewStatus { get; set; }
+
+		public string? ProgressionStatus { get; set; }
+
+		public Guid? CompanyId { get; set; }
+
+		public Guid? ContactPersonId { get;set; }
+
+		public DateTime? DateSubmitted { get; set; }
+
+		public DateTime? EndDate { get; set;}
 	}
 }

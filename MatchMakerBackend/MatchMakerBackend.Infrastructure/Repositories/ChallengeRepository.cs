@@ -53,7 +53,7 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 		/// <returns>Challenge that matches the Id</returns>
 		public async Task<Challenge?> GetChallengeById(Guid id)
 		{
-			return await _db.Challenges.FirstOrDefaultAsync(challenge => challenge.Id == id);
+			return await _db.Challenges.Include(temp => temp.ContactPerson).FirstOrDefaultAsync(challenge => challenge.Id == id);
 		}
 
 		/// <summary>
