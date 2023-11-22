@@ -24,12 +24,14 @@ namespace MatchMakerBackend.ControllerTests
 		private readonly Mock<IChallengeAdderService> _challengeAdderServiceMock;
 		private readonly Mock<IChallengeUpdateService> _challengeUpdateServiceMock;
 		private readonly Mock<IChallengeGetterService> _challengeGetterServiceMock;
+		private readonly Mock<ITagGetterService> _tagGetterServiceMock;
 		private readonly Mock<IFileService> _fileServiceMock;
 
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly IChallengeGetterService _challengeGetterService;
 		private readonly IChallengeUpdateService _challengeUpdateService;
 		private readonly IChallengeAdderService _challengeAdderService;
+		private readonly ITagGetterService _tagGetterService;
 		private readonly IFixture _fixture;
 		private readonly IFileService _fileService;
 
@@ -64,10 +66,13 @@ namespace MatchMakerBackend.ControllerTests
 			_challengeUpdateServiceMock = new Mock<IChallengeUpdateService>();
 			_challengeUpdateService = _challengeUpdateServiceMock.Object;
 
+			_tagGetterServiceMock = new Mock<ITagGetterService>();
+			_tagGetterService = _tagGetterServiceMock.Object;
+
 			_fileServiceMock = new Mock<IFileService>();
 			_fileService = _fileServiceMock.Object;
 
-			_challengeController = new ChallengeController(_userManager, _challengeAdderService, _challengeGetterService, _challengeUpdateService, _fileService);
+			_challengeController = new ChallengeController(_userManager, _challengeAdderService, _challengeGetterService, _challengeUpdateService, _fileService, _tagGetterService);
 		}
 
 		[Fact]

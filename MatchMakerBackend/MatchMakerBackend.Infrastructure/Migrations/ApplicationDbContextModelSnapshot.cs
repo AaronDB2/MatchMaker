@@ -37,6 +37,21 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                     b.ToTable("ApplicationUserTag");
                 });
 
+            modelBuilder.Entity("ChallengeTag", b =>
+                {
+                    b.Property<Guid>("ChallengesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TagsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ChallengesId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("ChallengeTag");
+                });
+
             modelBuilder.Entity("CompanyTag", b =>
                 {
                     b.Property<Guid>("CompaniesId")
@@ -294,15 +309,15 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                         {
                             Id = new Guid("4b374141-5b2c-4db5-8416-01470b1f991e"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aa16ac3e-df7f-47ac-ab1d-c837cf7f723e",
+                            ConcurrencyStamp = "70d9b838-d890-476d-a482-99ed5c6345d5",
                             Email = "aarontest@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AARONTEST@GMAIL.COM",
                             NormalizedUserName = "AARONTEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEJ15IsPKElv04ad66vnxOaceJ51768cHXrEi2rkAgnrSw/2RFcbg8PBlPSeyk7+Xw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJHaWEoIwdINhHHS2UpH/3q1mDpXSuIl3nBlzz68bjvxCBFvsSaqn4aZFtnROdevRg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "de52146a-526c-49c9-b948-ef620fc07697",
+                            SecurityStamp = "9f920101-dda5-49ea-be1f-23005426a585",
                             TwoFactorEnabled = false,
                             UserName = "aarontest@gmail.com"
                         });
@@ -429,6 +444,21 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                     b.HasOne("MatchMakerBackend.Core.Domain.IdentityEntities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ChallengeTag", b =>
+                {
+                    b.HasOne("MatchMakerBackend.Core.Domain.Entities.Challenge", null)
+                        .WithMany()
+                        .HasForeignKey("ChallengesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MatchMakerBackend.Core.Domain.Entities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

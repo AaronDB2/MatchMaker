@@ -70,8 +70,9 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 		/// Updates entire challenge entity in data store
 		/// </summary>
 		/// <param name="challenge">Challenge to update</param>
+		/// <param name="tag">Tag to add</param>
 		/// <returns>Updated challenge or if not found returns given challenge</returns>
-		public async Task<Challenge> UpdateChallenge(Challenge challenge)
+		public async Task<Challenge> UpdateChallenge(Challenge challenge, Tag? tag)
 		{
 			// Find matching challenge in db
 			Challenge? matchingChallenge = await _db.Challenges.FirstOrDefaultAsync(temp => temp.Id == challenge.Id);
@@ -90,6 +91,12 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 			matchingChallenge.DateSubmitted = challenge.DateSubmitted;
 			matchingChallenge.ProgressionStatus = challenge.ProgressionStatus;
 			matchingChallenge.ViewStatus = challenge.ViewStatus;
+
+			// Add tag to challenge
+			if(tag != null)
+			{
+				matchingChallenge.Tags.Add(tag);
+			}
 
 			await _db.SaveChangesAsync();
 

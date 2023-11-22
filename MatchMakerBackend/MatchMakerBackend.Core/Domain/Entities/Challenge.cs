@@ -53,5 +53,8 @@ namespace MatchMakerBackend.Core.Domain.Entities
 
 		[Required]
 		public DateTime EndDate { get; set; }
+
+		// Join table with tag entity (many to many relationship)
+		public List<Tag> Tags { get; set; } = new();
 	}
 }

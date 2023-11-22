@@ -19,6 +19,25 @@ namespace MatchMakerBackend.Core.Services
 			_challengeRepository = challengeRepository;
 		}
 
+		public async Task<ChallengeResponse> AddChallengeTag(ChallengeTagRequest challengeTagRequest, Tag tag)
+		{
+			// Get challenge from data store
+			Challenge challengeToBeUpdated = await _challengeRepository.GetChallengeById(challengeTagRequest.ChallengeId);
+
+			// Check if challenge was found
+			if (challengeToBeUpdated == null)
+			{
+				throw new ArgumentNullException(nameof(challengeToBeUpdated));
+			}
+
+			Challenge updatedChallenge = await _challengeRepository.UpdateChallenge(challengeToBeUpdated, tag);
+
+			return new ChallengeResponse()
+			{
+				ChallengeId = updatedChallenge.Id
+			};
+		}
+
 		public async Task<ChallengeResponse> EditChallenge(UpdateChallengeRequest updateChallengeRequest)
 		{
 			// Check if editCourseRequest is null
@@ -30,7 +49,7 @@ namespace MatchMakerBackend.Core.Services
 			// Get challenge from data store
 			Challenge challengeToBeUpdated = await _challengeRepository.GetChallengeById(updateChallengeRequest.challengeId);
 
-			// Check if course was found
+			// Check if challenge was found
 			if (challengeToBeUpdated == null)
 			{
 				throw new ArgumentNullException(nameof(challengeToBeUpdated));
@@ -45,7 +64,7 @@ namespace MatchMakerBackend.Core.Services
 			challengeUpdateData.DateSubmitted = challengeToBeUpdated.DateSubmitted;
 
 			// Update challenge
-			Challenge challengeUpdated = await _challengeRepository.UpdateChallenge(challengeUpdateData);
+			Challenge challengeUpdated = await _challengeRepository.UpdateChallenge(challengeUpdateData, null);
 
 			// Check if challenge was updated
 			if (challengeUpdated == null)

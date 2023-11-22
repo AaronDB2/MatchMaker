@@ -95,7 +95,7 @@ namespace MatchMakerBackend.RepositoryTests
 			updateChallenge.Id = testChallenge.Id;
 
 			// Act
-			Challenge result = await _challengeRepository.UpdateChallenge(updateChallenge);
+			Challenge result = await _challengeRepository.UpdateChallenge(updateChallenge, null);
 
 			// Assert
 			Assert.Equal(result.ChallengeTitle, updateChallenge.ChallengeTitle);

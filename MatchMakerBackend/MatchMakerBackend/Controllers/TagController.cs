@@ -1,7 +1,10 @@
-﻿using MatchMakerBackend.Core.DTO;
+﻿using MatchMakerBackend.Core.Domain.IdentityEntities;
+using MatchMakerBackend.Core.DTO;
 using MatchMakerBackend.Core.ServiceContracts;
+using MatchMakerBackend.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 
