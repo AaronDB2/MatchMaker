@@ -43,7 +43,7 @@ namespace MatchMakerBackend.Infrastructure.Repositories
 		/// <returns>List of challenges</returns>
 		public async Task<List<Challenge>?> GetAllChallenges()
 		{
-			return await _db.Challenges.ToListAsync();
+			return await _db.Challenges.Include(temp => temp.Tags).ToListAsync();
 		}
 
 		/// <summary>
