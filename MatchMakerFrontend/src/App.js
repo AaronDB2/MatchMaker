@@ -15,6 +15,7 @@ import CreateChallenge from "./routes/createChallenge/createChallenge.component"
 import CreateAccount from "./routes/createAccount/createAccount.component";
 import Challenge from "./routes/challenge/challenge.component";
 import EditChallenge from "./routes/editChallenge/editChallenge.component";
+import Register from "./routes/register/register.component";
 
 // App component. Hold routing functionality
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/search-challenges" element={<SearchChallenges />} />
           <Route path="/create-company" element={<CreateCompany />} />
           <Route path="/create-tag" element={<CreateTag />} />

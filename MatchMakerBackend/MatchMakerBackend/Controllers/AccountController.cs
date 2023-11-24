@@ -77,6 +77,54 @@ namespace MatchMakerBackend.UI.Controllers
 		}
 
 		/// <summary>
+		/// Register end point for registering new user accounts
+		/// </summary>
+		/// <param name="registerDTO">RegisterDTO model</param>
+		/// <returns>On success returns username and email</returns>
+		[HttpPost]
+		[AllowAnonymous]
+		[Route("register")]
+		public async Task<IActionResult> PostRegister(RegisterDTO registerDTO)
+		{
+			//Validation
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+
+			// Create new ApplicationUser based on data from RegisterDTO
+			ApplicationUser user = new ApplicationUser();
+			user.UserName = registerDTO.UserName;
+			user.Email = registerDTO.Email;
+
+			// Create new User
+			IdentityResult result = await _userManager.CreateAsync(user, registerDTO.Password);
+
+			// Check if user was updated
+			if (result.Succeeded)
+			{
+				// Check if user needs the admin role
+				if (registerDTO.Admin != null)
+				{
+					IdentityResult resultAddedToRole = await _userManager.AddToRoleAsync(user, "Admin");
+				}
+
+				// Get roles of user for Jwt token
+				var roles = await _userManager.GetRolesAsync(user);
+
+				// Create Jwt token
+				var authenticationResponse = _jwtService.CreateJwtToken(user, roles);
+
+				return Ok(authenticationResponse);
+			}
+			else
+			{
+				return Problem("Account is invalid");
+			}
+		}
+
+		/// <summary>
 		/// Updates user password endpoint
 		/// </summary>
 		/// <param name="updatePasswordRequest">Data for updating the user password</param>
