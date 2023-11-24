@@ -44,7 +44,8 @@ namespace MatchMakerBackend.Core.Domain.RepositoryContracts
 		/// Update challenge data
 		/// </summary>
 		/// <param name="challenge">Challenge object to update</param>
+		/// <param name="tag">Tag object to add</param>
 		/// <returns>Updated challenge object</returns>
-		Task<Challenge> UpdateChallenge(Challenge challenge);
+		Task<Challenge> UpdateChallenge(Challenge challenge, Tag? tag);
 	}
 }

@@ -17,6 +17,7 @@ namespace MatchMakerBackend.UI.Controllers
 		private readonly IChallengeAdderService _challengeAdderService;
 		private readonly IChallengeGetterService _challengeGetterService;
 		private readonly IChallengeUpdateService _challengeUpdateService;
+		private readonly ITagGetterService _tagGetterService;
 		private readonly IFileService _fileService;
 
 		// Constructor
@@ -25,7 +26,8 @@ namespace MatchMakerBackend.UI.Controllers
 			IChallengeAdderService challengeAdderService,
 			IChallengeGetterService challengeGetterService,
 			IChallengeUpdateService challengeUpdateService,
-			IFileService fileService
+			IFileService fileService,
+			ITagGetterService tagGetterService
 		) 
 		{ 
 			_userManager = userManager;
@@ -33,6 +35,7 @@ namespace MatchMakerBackend.UI.Controllers
 			_challengeGetterService = challengeGetterService;
 			_challengeUpdateService = challengeUpdateService;
 			_fileService = fileService;
+			_tagGetterService = tagGetterService;
 		}
 
 		/// <summary>
@@ -193,6 +196,40 @@ namespace MatchMakerBackend.UI.Controllers
 			var stream = _fileService.Download(fileName);
 
 			return File(stream, "application/octet-stream", fileName);
+		}
+
+		/// <summary>
+		/// Endpont for adding tags to challenge entity
+		/// </summary>
+		/// <param name="challengeTagRequest">Tag to add to the challenge</param>
+		/// <returns>On success challenge response</returns>
+		[HttpPost]
+		[Route("challengetag")]
+		public async Task<IActionResult> AddChallengeTag(ChallengeTagRequest challengeTagRequest)
+		{
+			//Validation
+			if (!ModelState.IsValid)
+			{
+				string errorMessage = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+				return Problem(errorMessage);
+			}
+
+			// Find tag that matches the name
+			// (should change this to a get name method instead of filter)
+			List<TagResponse?>? tagResponse = await _tagGetterService.GetFilterdTags("TagName", challengeTagRequest.TagName);
+
+			// Check if tag had been found
+			if (tagResponse[0] == null)
+			{
+				return NoContent();
+			}
+			else
+			{
+
+				ChallengeResponse response = await _challengeUpdateService.AddChallengeTag(challengeTagRequest, tagResponse[0].Tag);
+
+				return Ok(response);
+			}
 		}
 	}
 }

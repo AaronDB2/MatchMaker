@@ -54,6 +54,7 @@ const SearchChallenges = () => {
           <select id="challenge-attribute" name="searchBy">
             <option value="ChallengeTitle">Challenge Title</option>
             <option value="ChallengeId">Challenge Id</option>
+            <option value="TagName">Tag Name</option>
           </select>
           <input
             type="text"

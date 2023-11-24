@@ -60,6 +60,32 @@ const EditChallenge = () => {
     e.target.ResultFile.value = "";
   };
 
+  // Handles submit event of the tag form
+  const handleSubmitTag = (e) => {
+    e.preventDefault();
+    // Prepare request body
+    var body = {
+      TagName: e.target.TagName.value,
+      ChallengeId: challengeId,
+    };
+
+    // Send request
+    axios
+      .post("http://localhost:5063/api/challenge/challengetag", body, {
+        headers: {
+          Authorization: "Bearer " + localStorage["token"],
+        },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    e.target.TagName.value = "";
+  };
+
   // Set the file state
   const saveChallengeFile = (e) => {
     setFile(e.target.files[0]);
@@ -115,6 +141,12 @@ const EditChallenge = () => {
           />
           <label for="endDate">End Date:</label>
           <input type="date" id="enddate" name="EndDate" />
+          <input type="submit" value="Submit" />
+        </EditChallengeForm>
+        <h3>Add tags</h3>
+        <EditChallengeForm onSubmit={handleSubmitTag}>
+          <label for="tag-name">Tag:</label>
+          <input type="text" id="tag-name" name="TagName" />
           <input type="submit" value="Submit" />
         </EditChallengeForm>
       </EditChallengeContainer>

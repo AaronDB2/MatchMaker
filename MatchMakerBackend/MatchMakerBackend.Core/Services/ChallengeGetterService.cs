@@ -72,18 +72,52 @@ namespace MatchMakerBackend.Core.Services
 
 		public async Task<List<ChallengeResponse?>> GetFilterdChallenges(string searchBy, string? searchString)
 		{
-			List<Challenge>? challenges = searchBy switch
+			List<Challenge>? challenges = new List<Challenge>();
+
+			// Check if searched by tags
+			if (searchBy == nameof(TagResponse.TagName))
 			{
-				nameof(ChallengeResponse.ChallengeId) =>
-				 await _challengeRepository.GetFilterdChallenges(temp =>
-				 temp.Id.ToString().Contains(searchString)),
+				// Get all challenges
+				List<Challenge>? allChallenges = await _challengeRepository.GetAllChallenges();
 
-				nameof(ChallengeResponse.ChallengeTitle) =>
-				 await _challengeRepository.GetFilterdChallenges(temp =>
-				 temp.ChallengeTitle.Contains(searchString)),
+				// Loop over all the challenges
+				foreach(Challenge challenge in allChallenges)
+				{
+					// Check if challenge has tags
+					if(challenge.Tags.Count > 0)
+					{
+						// Loop over tags
+						foreach(Tag tag in challenge.Tags)
+						{
+							// Check if tag name matches the search string
+							if(tag.Name.Contains(searchString))
+							{
+								challenges.Add(challenge);
+							}
+						}
+					}
+				}
 
-				_ => await _challengeRepository.GetAllChallenges()
-			};
+				// If challenges list is empty return all challenges
+				if (challenges.Count == 0)
+				{
+					challenges = allChallenges;
+				}
+			} else
+			{
+				challenges = searchBy switch
+				{
+					nameof(ChallengeResponse.ChallengeId) =>
+					 await _challengeRepository.GetFilterdChallenges(temp =>
+					 temp.Id.ToString().Contains(searchString)),
+
+					nameof(ChallengeResponse.ChallengeTitle) =>
+					 await _challengeRepository.GetFilterdChallenges(temp =>
+					 temp.ChallengeTitle.Contains(searchString)),
+
+					_ => await _challengeRepository.GetAllChallenges()
+				};
+			}
 
 			List<ChallengeResponse> response = new List<ChallengeResponse>();
 

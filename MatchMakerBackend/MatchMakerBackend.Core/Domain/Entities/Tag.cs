@@ -26,5 +26,8 @@ namespace MatchMakerBackend.Core.Domain.Entities
 
 		// Join table with applicationUser entity (many to many relationship)
 		public List<ApplicationUser> Users { get; set; } = new();
+
+		// Join table with challenge entity (many to many relationship)
+		public List<Challenge> Challenges { get; set; } = new();
 	}
 }
