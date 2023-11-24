@@ -1,6 +1,12 @@
 import axios from "axios";
 
-import { PageBody, LoginContainer, LoginForm, PageTitle } from "./login.styles";
+import {
+  PageBody,
+  LoginContainer,
+  LoginForm,
+  PageTitle,
+  NavLink,
+} from "./login.styles";
 
 // Login page component
 const Login = () => {
@@ -50,6 +56,7 @@ const Login = () => {
           <input type="password" id="password" name="Password" />
           <input type="submit" value="Submit" />
         </LoginForm>
+        <NavLink to="/register">Register A New Account</NavLink>
       </LoginContainer>
     </PageBody>
   );
