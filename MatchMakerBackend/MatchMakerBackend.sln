@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchMakerBackend.ServiceTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchMakerBackend.RepositoryTests", "MatchMakerBackend.RepositoryTests\MatchMakerBackend.RepositoryTests.csproj", "{307B4E6B-E683-4E43-B81A-CD97D3E032C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchMakerBackend.IntergrationTests", "MatchMakerBackend.IntergrationTests\MatchMakerBackend.IntergrationTests.csproj", "{6B95091D-3BCE-49A2-9C95-BAF1A57B6D67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{307B4E6B-E683-4E43-B81A-CD97D3E032C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{307B4E6B-E683-4E43-B81A-CD97D3E032C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{307B4E6B-E683-4E43-B81A-CD97D3E032C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B95091D-3BCE-49A2-9C95-BAF1A57B6D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B95091D-3BCE-49A2-9C95-BAF1A57B6D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B95091D-3BCE-49A2-9C95-BAF1A57B6D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B95091D-3BCE-49A2-9C95-BAF1A57B6D67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{422EECF8-6C6E-4227-86FD-A35E4F6B9D5F} = {3196AB0A-E2EB-4A59-8927-6B1517BA7A59}
 		{4B51F189-9797-4BFC-9359-7E0C763C1396} = {3196AB0A-E2EB-4A59-8927-6B1517BA7A59}
 		{307B4E6B-E683-4E43-B81A-CD97D3E032C7} = {3196AB0A-E2EB-4A59-8927-6B1517BA7A59}
+		{6B95091D-3BCE-49A2-9C95-BAF1A57B6D67} = {3196AB0A-E2EB-4A59-8927-6B1517BA7A59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A0A6078-12A4-4F89-A3FB-6652E8D2283E}

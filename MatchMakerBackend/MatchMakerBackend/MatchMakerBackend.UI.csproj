@@ -27,4 +27,8 @@
     <ProjectReference Include="..\MatchMakerBackend.Infrastructure\MatchMakerBackend.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="MatchMakerBackend.IntegrationTests" />
+  </ItemGroup>
+
 </Project>
