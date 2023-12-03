@@ -100,18 +100,68 @@ const CreateChallenge = () => {
             name="ChallengeFile"
             onChange={saveFileChallenge}
           />
-          <label for="challengeViewStatus">View Status:</label>
-          <input
-            type="text"
-            id="challengeviewstatus"
-            name="ChallengeViewStatus"
-          />
-          <label for="challengeProgressionStatus">Progression Status:</label>
-          <input
-            type="text"
-            id="challengeprogressionstatus"
-            name="ChallengeProgressionStatus"
-          />
+          <div>
+            <p>View Status: </p>
+            <label for="intern">Intern</label>
+            <input
+              type="radio"
+              id="intern"
+              name="ChallengeViewStatus"
+              value="Intern"
+            />
+            <label for="intranet">Intranet</label>
+            <input
+              type="radio"
+              id="intranet"
+              name="ChallengeViewStatus"
+              value="Intranet"
+            />
+            <label for="public">Public</label>
+            <input
+              type="radio"
+              id="public"
+              name="ChallengeViewStatus"
+              value="Public"
+            />
+          </div>
+          <div>
+            <p>Progression Status: </p>
+            <label for="new">New</label>
+            <input
+              type="radio"
+              id="new"
+              name="ChallengeProgressionStatus"
+              value="New"
+            />
+            <label for="open-for-ideas">Open for ideas</label>
+            <input
+              type="radio"
+              id="open-for-ideas"
+              name="ChallengeProgressionStatus"
+              value="Open for ideas"
+            />
+            <label for="progress">In progress</label>
+            <input
+              type="radio"
+              id="progress"
+              name="ChallengeProgressionStatus"
+              value="In progress"
+            />
+            <label for="finished">Finished</label>
+            <input
+              type="radio"
+              id="finished"
+              name="ChallengeProgressionStatus"
+              value="Finished"
+            />
+            <label for="archived">Archived</label>
+            <input
+              type="radio"
+              id="archived"
+              name="ChallengeProgressionStatus"
+              value="Archived"
+            />
+          </div>
           <label for="endDate">End Date:</label>
           <input type="date" id="enddate" name="EndDate" />
           <input type="submit" value="Submit" />

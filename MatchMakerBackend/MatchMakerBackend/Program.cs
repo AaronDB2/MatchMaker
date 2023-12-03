@@ -108,3 +108,5 @@ app.UseAuthorization(); // Middleware for authorization. Validates access permis
 app.MapControllers(); // Middleware for Executing filter pipeline
 
 app.Run();
+
+public partial class Program { } // Makes the auto generated program accessible programmatically 
