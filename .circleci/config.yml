@@ -14,6 +14,9 @@ jobs:
           command: pwd
       - run:
           name: "Check files"
+          command: cd ..
+      - run:
+          name: "Check files"
           command: ls
       # - run:
       #     name: "Install project dependencies"
