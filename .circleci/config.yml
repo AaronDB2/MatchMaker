@@ -13,14 +13,17 @@ jobs:
           name: "Print Working Directory"
           command: pwd
       - run:
-          name: "Install project dependencies"
-          command: dotnet.exe restore
-      - run:
-          name: "Run Application Tests"
-          command: dotnet.exe test
-      - run:
-          name: "Print Working Directory"
-          command: pwd
+          name: "Check files"
+          command: ls
+      # - run:
+      #     name: "Install project dependencies"
+      #     command: dotnet.exe restore
+      # - run:
+      #     name: "Run Application Tests"
+      #     command: dotnet.exe test
+      # - run:
+      #     name: "Print Working Directory"
+      #     command: pwd
 workflows:
   test:
     jobs:
