@@ -9,6 +9,7 @@ jobs:
     executor:
       name: windows/default
     steps:
+      - checkout
       - run:
           name: "Print Working Directory"
           command: pwd
@@ -16,7 +17,7 @@ jobs:
           name: "Check files"
           command: cd ..
       - run:
-          name: "Check files"
+          name: "Check files 2"
           command: pwd
       # - run:
       #     name: "Install project dependencies"
