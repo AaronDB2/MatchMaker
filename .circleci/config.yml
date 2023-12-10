@@ -20,6 +20,15 @@ jobs:
       - run:
           name: "Check folders"
           command: ls
+      -run:
+          name: "Go to backend project"
+          command: cd ./MatchMakerBackend
+      - run:
+          name: "Install project dependencies"
+          command: dotnet.exe restore
+      - run:
+          name: "Run tests"
+          command: dotnet.exe test
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
