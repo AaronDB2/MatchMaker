@@ -20,7 +20,7 @@ jobs:
       - run:
           name: "Check folders"
           command: ls
-      -run:
+      - run:
           name: "Go to backend project"
           command: cd ./MatchMakerBackend
       - run:
