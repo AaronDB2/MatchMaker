@@ -1,0 +1,24 @@
+version: 2.1
+
+orbs:
+  windows: circleci/windows@2.2.0
+
+jobs:
+  test:
+    description: Setup and run application tests
+    executor:
+      name: windows/default
+    steps:
+      - run:
+          name: "Install project dependencies"
+          command: dotnet.exe restore
+      - run:
+          name: "Run Application Tests"
+          command: dotnet.exe test
+      - run:
+          name: "Print Working Directory"
+          command: pwd
+workflows:
+  test:
+    jobs:
+      - test
