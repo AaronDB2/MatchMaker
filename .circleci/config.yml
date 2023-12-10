@@ -11,7 +11,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "93:2f:35:23:39:35:75:33:af:78:93:99:88:86:46:a7"
+            - "c4:12:3b:3a:25:95:32:ee:58:b7:8d:90:4a:d0:6c:82"
       - checkout
       - run:
           name: "Print Working Directory"
