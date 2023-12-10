@@ -9,6 +9,9 @@ jobs:
     executor:
       name: windows/default
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "93:2f:35:23:39:35:75:33:af:78:93:99:88:86:46:a7"
       - checkout
       - run:
           name: "Print Working Directory"
