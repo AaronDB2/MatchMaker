@@ -9,10 +9,10 @@ jobs:
     executor:
       name: windows/default
     steps:
-      - checkout
       - add_ssh_keys:
          fingerprints:
           - "a0:1e:59:bf:b4:b4:2a:66:71:55:b9:d4:14:df:80:ae"
+      - checkout
       - run:
           name: "Print Working Directory"
           command: pwd
