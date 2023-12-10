@@ -28,11 +28,8 @@ jobs:
           name: "Check folders"
           command: ls
       - run:
-          name: "Go to backend project"
-          command: cd ./MatchMakerBackend
-      - run:
-          name: "Install project dependencies"
-          command: ls
+          name: "Go to backend project and Install project dependencies"
+          command: cd ./MatchMakerBackend && dotnet build
       - run:
           name: "Run tests"
           command: dotnet test
