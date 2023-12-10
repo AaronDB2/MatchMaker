@@ -29,10 +29,7 @@ jobs:
           command: ls
       - run:
           name: "Go to backend project and Install project dependencies"
-          command: cd ./MatchMakerBackend && dotnet build
-      - run:
-          name: "Run tests"
-          command: dotnet test
+          command: cd ./MatchMakerBackend && dotnet build && dotnet test
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
