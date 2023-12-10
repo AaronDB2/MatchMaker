@@ -109,13 +109,6 @@ const CreateChallenge = () => {
               name="ChallengeViewStatus"
               value="Intern"
             />
-            <label for="intranet">Intranet</label>
-            <input
-              type="radio"
-              id="intranet"
-              name="ChallengeViewStatus"
-              value="Intranet"
-            />
             <label for="public">Public</label>
             <input
               type="radio"
@@ -126,13 +119,6 @@ const CreateChallenge = () => {
           </div>
           <div>
             <p>Progression Status: </p>
-            <label for="new">New</label>
-            <input
-              type="radio"
-              id="new"
-              name="ChallengeProgressionStatus"
-              value="New"
-            />
             <label for="open-for-ideas">Open for ideas</label>
             <input
               type="radio"

@@ -6,6 +6,7 @@ using MatchMakerBackend.UI.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestPlatform.Common;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -80,6 +81,41 @@ namespace MatchMakerBackend.ControllerTests
 
 			// Act
 			var result = await _accountController.PostLogin(loginDTO);
+
+			// Assert
+			Assert.IsType<OkObjectResult>(result);
+		}
+
+		[Fact]
+		public async void PostRegister_ShouldReturnAuthResponse_OnSuccess()
+		{
+			// Arrange
+			RegisterDTO registerDTO = _fixture.Create<RegisterDTO>();
+			IList<string> roles = _fixture.Create<IList<string>>();
+			AuthenticationResponse authenticationResponse = _fixture.Create<AuthenticationResponse>();
+
+			//Mock CreateAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.CreateAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>()))
+			 .ReturnsAsync(IdentityResult.Success);
+
+			//Mock AddToRoleAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.AddToRoleAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>()))
+			 .ReturnsAsync(IdentityResult.Success);
+
+			//Mock GetRolesAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.GetRolesAsync(It.IsAny<ApplicationUser>()))
+			 .ReturnsAsync(roles);
+
+			//Mock CreateJwtToken method from JwtService
+			_jwtServiceMock.Setup
+			 (temp => temp.CreateJwtToken(It.IsAny<ApplicationUser>(), It.IsAny<IList<string>>()))
+			.Returns(authenticationResponse);
+
+			// Act
+			var result = await _accountController.PostRegister(registerDTO);
 
 			// Assert
 			Assert.IsType<OkObjectResult>(result);
@@ -163,6 +199,36 @@ namespace MatchMakerBackend.ControllerTests
 
 			// Act
 			var result = await _accountController.UpdateUserCompany(requestDTO);
+
+			// Assert
+			Assert.IsType<OkObjectResult>(result);
+		}
+
+		[Fact]
+		public async void AddUserTag_ShouldReturnOkResponse_OnSuccess()
+		{
+			// Arrange
+			UserTagRequest userTagRequest = _fixture.Create<UserTagRequest>();
+			ApplicationUser user = _fixture.Create<ApplicationUser>();
+			List<TagResponse?>? tags = _fixture.Create<List<TagResponse?>?>();
+
+			//Mock FindByNameAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.FindByNameAsync(It.IsAny<string>()))
+			 .ReturnsAsync(user);
+
+			//Mock GetFilterdTags method from TagGetterService
+			_tagGetterServiceMock.Setup
+			 (temp => temp.GetFilterdTags(It.IsAny<string>(), It.IsAny<string>()))
+			 .ReturnsAsync(tags);
+
+			//Mock UpdateAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.UpdateAsync(It.IsAny<ApplicationUser>()))
+			 .ReturnsAsync(IdentityResult.Success);
+
+			// Act
+			var result = await _accountController.AddUserTag(userTagRequest);
 
 			// Assert
 			Assert.IsType<OkObjectResult>(result);
