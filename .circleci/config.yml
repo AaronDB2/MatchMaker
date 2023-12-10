@@ -32,10 +32,10 @@ jobs:
           command: cd ./MatchMakerBackend
       - run:
           name: "Install project dependencies"
-          command: dotnet --help
+          command: dotnet restore
       - run:
           name: "Run tests"
-          command: dotnet.exe test
+          command: dotnet test
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
