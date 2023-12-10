@@ -32,7 +32,7 @@ jobs:
           command: cd ./MatchMakerBackend
       - run:
           name: "Install project dependencies"
-          command: dotnet restore
+          command: dotnet build
       - run:
           name: "Run tests"
           command: dotnet test
