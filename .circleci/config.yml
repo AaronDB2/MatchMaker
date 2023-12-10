@@ -21,7 +21,7 @@ jobs:
           command: cd ..
       - run:
           name: "Check files 2"
-          command: pwd
+          command: ls
       # - run:
       #     name: "Install project dependencies"
       #     command: dotnet.exe restore
