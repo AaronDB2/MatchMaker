@@ -10,6 +10,9 @@ jobs:
       name: windows/default
     steps:
       - run:
+          name: "Print Working Directory"
+          command: pwd
+      - run:
           name: "Install project dependencies"
           command: dotnet.exe restore
       - run:
