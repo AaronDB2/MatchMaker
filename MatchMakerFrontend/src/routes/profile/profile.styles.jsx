@@ -40,8 +40,22 @@ export const EditDataContainer = styled.div`
       margin: 0;
     }
   }
+
+  /* Media Query for mobile */
+  @media (max-width: 64rem) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   text-align: center;
+
+  /* Media Query for mobile */
+  @media (max-width: 64rem) {
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 `;

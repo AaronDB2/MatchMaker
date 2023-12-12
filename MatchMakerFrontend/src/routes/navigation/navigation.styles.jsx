@@ -20,7 +20,12 @@ export const NavigationContainer = styled.div`
 
 export const LogoContainer = styled.div``;
 
-export const NavLinks = styled.div``;
+export const NavLinks = styled.div`
+  /* Media Query for mobile */
+  @media (max-width: 64rem) {
+    display: none;
+  }
+`;
 
 export const NavLink = styled(Link)`
   padding: 0.5rem;
@@ -37,5 +42,16 @@ export const NavFooterContainer = styled.div`
   a:hover,
   a:active {
     text-decoration: underline;
+  }
+
+  /* Media Query for mobile */
+  @media (max-width: 64rem) {
+    div {
+      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;

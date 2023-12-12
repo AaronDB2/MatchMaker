@@ -26,4 +26,17 @@ export const SearchChallengeTable = styled.table`
     font-size: 1rem;
     padding: 1rem;
   }
+
+  /* Media Query for mobile */
+  @media (max-width: 64rem) {
+    th,
+    td {
+      display: none;
+    }
+
+    th:first-of-type,
+    td:first-of-type {
+      display: block;
+    }
+  }
 `;

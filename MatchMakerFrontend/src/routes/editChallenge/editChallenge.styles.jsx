@@ -15,4 +15,9 @@ export const PageTitle = styled.h1`
   text-align: center;
 `;
 
-export const EditChallengeForm = styled.form``;
+export const EditChallengeForm = styled.form`
+  /* Media Query for mobile */
+  @media (max-width: 64rem) {
+    max-width: 300px;
+  }
+`;
