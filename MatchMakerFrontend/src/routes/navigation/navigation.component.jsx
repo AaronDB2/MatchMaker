@@ -1,5 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import HamburgerMenu from "../../components/hamburgerMenu/hamburgerMenu.component";
+import MobileNav from "../../components/mobileNav/mobileNav.component";
 
 import {
   NavigationContainer,
@@ -12,6 +14,16 @@ import {
 // Navigation bar component
 const Navigation = () => {
   const [data, setData] = useState(localStorage.getItem("token") || "");
+
+  // Set local state
+  const [showMobileNav, setShowMobileNav] = useState(false);
+
+  // Shows or hides mobile nav
+  const handleMobileNav = (e) => {
+    console.log("clicked!");
+    setShowMobileNav(!showMobileNav);
+    console.log(showMobileNav);
+  };
 
   // Function to handle the storage event and update the component
   const handleStorageChange = (e) => {
@@ -33,30 +45,35 @@ const Navigation = () => {
 
   return (
     <Fragment>
-      <NavigationContainer>
-        <LogoContainer>
-          <NavLink to="/">LOGO/HOME</NavLink>
-        </LogoContainer>
-        <NavLinks>
-          <NavLink to="/search-challenges">SEARCH CHALLENGES</NavLink>
-          {data ? (
-            <NavLink to="/profile">PROFILE</NavLink>
-          ) : (
-            <NavLink to="/login">LOGIN</NavLink>
-          )}
-        </NavLinks>
-      </NavigationContainer>
-      <Outlet />
-      <NavFooterContainer>
-        <LogoContainer>
-          <NavLink to="/">LOGO/HOME</NavLink>
-        </LogoContainer>
-        <NavLinks>
-          <NavLink to="/search-challenges">SEARCH CHALLENGES</NavLink>
-          <NavLink to="/login">LOGIN</NavLink>
-          <NavLink to="/profile">PROFILE</NavLink>
-        </NavLinks>
-      </NavFooterContainer>
+      {showMobileNav ? (
+        <MobileNav handler={handleMobileNav} />
+      ) : (
+        <Fragment>
+          <NavigationContainer>
+            <LogoContainer>
+              <NavLink to="/">LOGO/HOME</NavLink>
+            </LogoContainer>
+            <HamburgerMenu handler={handleMobileNav} />
+            <NavLinks>
+              <NavLink to="/search-challenges">SEARCH CHALLENGES</NavLink>
+              {data ? (
+                <NavLink to="/profile">PROFILE</NavLink>
+              ) : (
+                <NavLink to="/login">LOGIN</NavLink>
+              )}
+            </NavLinks>
+          </NavigationContainer>
+          <Outlet />
+          <NavFooterContainer>
+            <NavLinks>
+              <NavLink to="/">HOME</NavLink>
+              <NavLink to="/search-challenges">SEARCH CHALLENGES</NavLink>
+              <NavLink to="/login">LOGIN</NavLink>
+              <NavLink to="/profile">PROFILE</NavLink>
+            </NavLinks>
+          </NavFooterContainer>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
