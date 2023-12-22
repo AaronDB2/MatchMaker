@@ -28,7 +28,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>On success the created tag</returns>
 		[HttpPost]
 		[Route("createTag")]
-		[Authorize(Roles = "Admin")]
+		[Authorize(Roles = "Admin,CompanyManager")]
 		public async Task<IActionResult> CreateTag(CreateTagRequest createTagRequest)
 		{
 			//Validation

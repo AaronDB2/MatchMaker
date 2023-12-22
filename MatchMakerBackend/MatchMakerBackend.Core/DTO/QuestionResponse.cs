@@ -18,5 +18,7 @@ namespace MatchMakerBackend.Core.DTO
 		public Guid? UserId { get; set; }
 
 		public Guid? QuestionId { get; set; }
+
+		public Guid? ChallengeId { get; set; }
 	}
 }

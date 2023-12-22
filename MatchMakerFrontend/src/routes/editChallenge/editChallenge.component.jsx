@@ -7,6 +7,7 @@ import {
   EditChallengeContainer,
   PageTitle,
   EditChallengeForm,
+  RadioValuesContainer,
 } from "./editChallenge.styles";
 
 // Edit challenge page
@@ -127,27 +128,75 @@ const EditChallenge = () => {
             name="ResultFile"
             onChange={saveFileEndResult}
           />
-          <label for="challengeViewStatus">View Status:</label>
-          <input
-            type="text"
-            id="challengeviewstatus"
-            name="ChallengeViewStatus"
-          />
-          <label for="challengeProgressionStatus">Progression Status:</label>
-          <input
-            type="text"
-            id="challengeprogressionstatus"
-            name="ChallengeProgressionStatus"
-          />
+          <div>
+            <p>View Status: </p>
+            <RadioValuesContainer>
+              <label for="intern">Intern</label>
+              <input
+                type="radio"
+                id="intern"
+                name="ChallengeViewStatus"
+                value="Intern"
+              />
+            </RadioValuesContainer>
+            <RadioValuesContainer>
+              <label for="public">Public</label>
+              <input
+                type="radio"
+                id="public"
+                name="ChallengeViewStatus"
+                value="Public"
+              />
+            </RadioValuesContainer>
+          </div>
+          <div>
+            <p>Progression Status: </p>
+            <RadioValuesContainer>
+              <label for="open-for-ideas">Open for ideas</label>
+              <input
+                type="radio"
+                id="open-for-ideas"
+                name="ChallengeProgressionStatus"
+                value="Open for ideas"
+              />
+            </RadioValuesContainer>
+            <RadioValuesContainer>
+              <label for="progress">In progress</label>
+              <input
+                type="radio"
+                id="progress"
+                name="ChallengeProgressionStatus"
+                value="In progress"
+              />
+            </RadioValuesContainer>
+            <RadioValuesContainer>
+              <label for="finished">Finished</label>
+              <input
+                type="radio"
+                id="finished"
+                name="ChallengeProgressionStatus"
+                value="Finished"
+              />
+            </RadioValuesContainer>
+            <RadioValuesContainer>
+              <label for="archived">Archived</label>
+              <input
+                type="radio"
+                id="archived"
+                name="ChallengeProgressionStatus"
+                value="Archived"
+              />
+            </RadioValuesContainer>
+          </div>
           <label for="endDate">End Date:</label>
           <input type="date" id="enddate" name="EndDate" />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Edit Challenge" />
         </EditChallengeForm>
         <h3>Add tags</h3>
         <EditChallengeForm onSubmit={handleSubmitTag}>
           <label for="tag-name">Tag:</label>
           <input type="text" id="tag-name" name="TagName" />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Add Tag" />
         </EditChallengeForm>
       </EditChallengeContainer>
     </PageBody>

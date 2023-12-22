@@ -15,11 +15,13 @@ export const PageTitle = styled.h1`
   text-align: center;
 `;
 
-export const SearchChallengesForm = styled.form``;
+export const SearchChallengesForm = styled.form`
+  background-color: white;
+`;
 
 export const SearchChallengeTable = styled.table`
   border: 1px solid black;
-
+  background-color: white;
   th,
   td {
     border: 1px solid black;

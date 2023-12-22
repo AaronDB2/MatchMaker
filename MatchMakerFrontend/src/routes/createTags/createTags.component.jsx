@@ -41,7 +41,7 @@ const CreateTag = () => {
         <CreateTagsForm onSubmit={handleSubmit}>
           <label for="tagname">Tag Name:</label>
           <input type="text" id="tagname" name="TagName" />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Create Tag" />
         </CreateTagsForm>
       </CreateTagsContainer>
     </PageBody>

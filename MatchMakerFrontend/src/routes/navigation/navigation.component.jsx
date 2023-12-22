@@ -20,9 +20,7 @@ const Navigation = () => {
 
   // Shows or hides mobile nav
   const handleMobileNav = (e) => {
-    console.log("clicked!");
     setShowMobileNav(!showMobileNav);
-    console.log(showMobileNav);
   };
 
   // Function to handle the storage event and update the component
@@ -68,8 +66,11 @@ const Navigation = () => {
             <NavLinks>
               <NavLink to="/">HOME</NavLink>
               <NavLink to="/search-challenges">SEARCH CHALLENGES</NavLink>
-              <NavLink to="/login">LOGIN</NavLink>
-              <NavLink to="/profile">PROFILE</NavLink>
+              {data ? (
+                <NavLink to="/profile">PROFILE</NavLink>
+              ) : (
+                <NavLink to="/login">LOGIN</NavLink>
+              )}
             </NavLinks>
           </NavFooterContainer>
         </Fragment>

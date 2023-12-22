@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   PageBody,
@@ -9,6 +10,8 @@ import {
 
 // Register page component
 const Register = () => {
+  const navigate = useNavigate();
+
   // Handles Register form submit event
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +31,7 @@ const Register = () => {
 
         // Set local storage
         localStorage["token"] = response.data.token;
+        localStorage["refreshToken"] = response.data.refreshToken;
 
         // Creates storageChangeEvent
         const storageChangeEvent = new StorageEvent("storage", {
@@ -37,6 +41,10 @@ const Register = () => {
 
         // Triggers storageChangeEvent so that it triggers navigation rerender
         window.dispatchEvent(storageChangeEvent);
+
+        if (response.status === 200) {
+          navigate("/");
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -54,14 +62,19 @@ const Register = () => {
         <PageTitle>Register</PageTitle>
         <RegisterForm onSubmit={handleSubmit}>
           <label for="username">Username:</label>
-          <input type="text" id="username" name="Username" />
+          <input type="text" id="username" name="Username" required />
           <label for="email">Email:</label>
-          <input type="email" id="email" name="Email" />
+          <input type="email" id="email" name="Email" required />
           <label for="password">Password:</label>
-          <input type="password" id="password" name="Password" />
+          <input type="password" id="password" name="Password" required />
           <label for="confirm-password">Confirm Password:</label>
-          <input type="password" id="confirm-password" name="ConfirmPassword" />
-          <input type="submit" value="Submit" />
+          <input
+            type="password"
+            id="confirm-password"
+            name="ConfirmPassword"
+            required
+          />
+          <input type="submit" value="Register" />
         </RegisterForm>
       </RegisterContainer>
     </PageBody>

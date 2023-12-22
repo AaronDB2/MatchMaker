@@ -47,6 +47,7 @@ namespace MatchMakerBackend.Infrastructure.DbContext
 
 			Guid ADMINROLE_ID = new Guid("D5873591-4EF5-4D3B-A570-7E8B50748BA9");
 			Guid IMPACTMAKERROLE_ID = new Guid("DA3D90B2-4900-4883-BFB6-89D7E83D748A");
+			Guid COMPANYMANAGER_ID = new Guid("8BDF1DE4-ABFC-4A1B-84C0-6DFF73BBF00B");
 
 			//seed admin role
 			builder.Entity<ApplicationRole>().HasData(new ApplicationRole
@@ -64,6 +65,15 @@ namespace MatchMakerBackend.Infrastructure.DbContext
 				NormalizedName = "IMPACTMAKER",
 				Id = IMPACTMAKERROLE_ID,
 				ConcurrencyStamp = IMPACTMAKERROLE_ID.ToString()
+			});
+
+			////seed company manager role
+			builder.Entity<ApplicationRole>().HasData(new ApplicationRole
+			{
+				Name = "CompanyManager",
+				NormalizedName = "COMPANYMANAGER",
+				Id = COMPANYMANAGER_ID,
+				ConcurrencyStamp = COMPANYMANAGER_ID.ToString()
 			});
 
 			//create user

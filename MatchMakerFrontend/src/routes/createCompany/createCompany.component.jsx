@@ -54,7 +54,7 @@ const CreateCompany = () => {
           />
           <label for="tag-name">Tag:</label>
           <input type="text" id="tag-name" name="TagName" />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Create Company" />
         </CreateCompanyForm>
       </CreateCompanyContainer>
     </PageBody>

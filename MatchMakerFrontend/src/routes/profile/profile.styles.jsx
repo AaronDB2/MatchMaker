@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const PageBody = styled.div`
   grid-area: main;
+  background-color: white;
 `;
 
 export const ProfileContainer = styled.div`
@@ -10,20 +11,23 @@ export const ProfileContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background-color: white;
 `;
 
 export const PageTitle = styled.h1`
   text-align: center;
 `;
 
-export const EditDataForm = styled.form``;
+export const EditDataForm = styled.form`
+  background-color: white;
+`;
 
 export const NavLink = styled(Link)`
   padding: 0.5rem;
   cursor: pointer;
   border: solid black 1px;
   margin: 1rem;
-
+  background-color: white;
   &:hover,
   &:active {
     background: grey;
@@ -32,7 +36,7 @@ export const NavLink = styled(Link)`
 
 export const EditDataContainer = styled.div`
   display: flex;
-
+  background-color: white;
   div {
     margin: 1rem;
 
@@ -50,7 +54,7 @@ export const EditDataContainer = styled.div`
 
 export const ButtonContainer = styled.div`
   text-align: center;
-
+  background-color: white;
   /* Media Query for mobile */
   @media (max-width: 64rem) {
     div {

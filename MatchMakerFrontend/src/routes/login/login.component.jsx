@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   PageBody,
@@ -10,6 +11,8 @@ import {
 
 // Login page component
 const Login = () => {
+  const navigate = useNavigate();
+
   // Handles login form submit event
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +30,7 @@ const Login = () => {
 
         // Set local storage
         localStorage["token"] = response.data.token;
+        localStorage["refreshToken"] = response.data.refreshToken;
 
         // Creates storageChangeEvent
         const storageChangeEvent = new StorageEvent("storage", {
@@ -36,6 +40,10 @@ const Login = () => {
 
         // Triggers storageChangeEvent so that it triggers navigation rerender
         window.dispatchEvent(storageChangeEvent);
+
+        if (response.status === 200) {
+          navigate("/");
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -51,10 +59,10 @@ const Login = () => {
         <PageTitle>Login</PageTitle>
         <LoginForm onSubmit={handleSubmit}>
           <label for="email">Email:</label>
-          <input type="email" id="email" name="Email" />
+          <input type="email" id="email" name="Email" required />
           <label for="password">Password:</label>
-          <input type="password" id="password" name="Password" />
-          <input type="submit" value="Submit" />
+          <input type="password" id="password" name="Password" required />
+          <input type="submit" value="Login" />
         </LoginForm>
         <NavLink to="/register">Register A New Account</NavLink>
       </LoginContainer>

@@ -15,6 +15,7 @@ import {
 const Profile = () => {
   // Decode the Jwt token
   const decodedToken = jwtDecode(localStorage["token"]);
+  console.log(decodedToken);
 
   // Handles change password form submit event
   const handleSubmitUpdatePassword = (e) => {
@@ -41,6 +42,7 @@ const Profile = () => {
         console.log(response);
         // Set local storage
         localStorage["token"] = response.data.token;
+        localStorage["refreshToken"] = response.data.refreshToken;
 
         // Creates storageChangeEvent
         const storageChangeEvent = new StorageEvent("storage", {
@@ -147,7 +149,7 @@ const Profile = () => {
                 id="confirmPassword"
                 name="ConfirmPassword"
               />
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Update Password" />
             </EditDataForm>
           </div>
           <div>
@@ -155,7 +157,7 @@ const Profile = () => {
             <EditDataForm onSubmit={handleSubmitUpdateCompany}>
               <label for="companyName">Company:</label>
               <input type="text" id="company" name="CompanyName" />
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Add Company" />
             </EditDataForm>
           </div>
           <div>
@@ -163,19 +165,34 @@ const Profile = () => {
             <EditDataForm onSubmit={handleSubmitTag}>
               <label for="tag-name">Tag:</label>
               <input type="text" id="tag-name" name="TagName" />
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Add Tag" />
             </EditDataForm>
           </div>
         </EditDataContainer>
-        <ButtonContainer>
-          <h2>Create New Entities</h2>
-          <div>
-            <NavLink to="/create-company">CREATE COMPANY</NavLink>
-            <NavLink to="/create-tag">CREATE TAG</NavLink>
-            <NavLink to="/create-challenge">CREATE CHALLENGE</NavLink>
-            <NavLink to="/create-account">CREATE ACCOUNT</NavLink>
-          </div>
-        </ButtonContainer>
+        {decodedToken[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ] === "Admin" ? (
+          <ButtonContainer>
+            <h2>Create New Entities</h2>
+            <div>
+              <NavLink to="/create-company">CREATE COMPANY</NavLink>
+              <NavLink to="/create-tag">CREATE TAG</NavLink>
+              <NavLink to="/create-challenge">CREATE CHALLENGE</NavLink>
+              <NavLink to="/create-account">CREATE ACCOUNT</NavLink>
+            </div>
+          </ButtonContainer>
+        ) : null}
+        {decodedToken[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ] === "CompanyManager" ? (
+          <ButtonContainer>
+            <h2>Create New Entities</h2>
+            <div>
+              <NavLink to="/create-tag">CREATE TAG</NavLink>
+              <NavLink to="/create-challenge">CREATE CHALLENGE</NavLink>
+            </div>
+          </ButtonContainer>
+        ) : null}
       </ProfileContainer>
     </PageBody>
   );

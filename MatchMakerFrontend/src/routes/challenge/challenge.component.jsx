@@ -5,6 +5,8 @@ import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
 import fileDownload from "js-file-download";
 
+import { dateTimeToDate } from "../../utils/dateTime";
+
 import {
   PageBody,
   ChallengeContainer,
@@ -33,6 +35,7 @@ const Challenge = () => {
 
   // Decode the Jwt token
   const decodedToken = jwtDecode(localStorage["token"]);
+  console.log(decodedToken);
 
   // Effect for fetching challenge by id
   useEffect(() => {
@@ -52,7 +55,7 @@ const Challenge = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5063/api/question?searchBy=questionId&searchString=${challengeId}`
+        `http://localhost:5063/api/question?searchBy=ChallengeId&searchString=${challengeId}`
       )
       .then(function (response) {
         setChallengeQuestions(response.data);
@@ -144,8 +147,10 @@ const Challenge = () => {
               <span>Company Id: {challenge["companyId"]}</span>
               <span>View Status: {challenge["viewStatus"]}</span>
               <span>Progression Status: {challenge["progressionStatus"]}</span>
-              <span>Date Submitted: {challenge["dateSubmitted"]}</span>
-              <span>End Date: {challenge["endDate"]}</span>
+              <span>
+                Date Submitted: {dateTimeToDate(challenge["dateSubmitted"])}
+              </span>
+              <span>End Date: {dateTimeToDate(challenge["endDate"])}</span>
             </ChallengeInfoContainer>
             <h2>Challenge Description</h2>
             <ChallengeDescription>
@@ -156,9 +161,11 @@ const Challenge = () => {
                 Download Challenge File
               </span>
               <span onClick={downloadResultFile}>Download Result File</span>
-              <NavLink to={`/challenge/${challengeId}/edit`}>
-                Edit Challenge
-              </NavLink>
+              {decodedToken["sub"] === challenge["contactPersonId"] ? (
+                <NavLink to={`/challenge/${challengeId}/edit`}>
+                  Edit Challenge
+                </NavLink>
+              ) : null}
             </ButtonContainer>
           </Fragment>
         ) : null}
@@ -168,14 +175,20 @@ const Challenge = () => {
             <h2>Ask A Question</h2>
             <QuestionForm onSubmit={handleSubmit}>
               <label for="questionTitle">Question Title</label>
-              <input type="text" id="question-title" name="QuestionTitle" />
+              <input
+                type="text"
+                id="question-title"
+                name="QuestionTitle"
+                required
+              />
               <label for="questionDescription">Question Description</label>
               <input
                 type="text"
                 id="question-description"
                 name="QuestionDescription"
+                required
               />
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Ask Question" />
             </QuestionForm>
             <QuestionDisplayContainer>
               <h2>Questions</h2>

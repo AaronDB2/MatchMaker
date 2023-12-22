@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Open Sans Condensed", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: url("/img/webb.png")
   }
   
   a {
@@ -36,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     max-width: 880px;
-
+    background-color: white;
     label {
       padding-top: 1rem;
     }

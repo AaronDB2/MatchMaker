@@ -34,5 +34,7 @@ namespace MatchMakerBackend.Core.DTO
 		public string ConfirmPassword { get; set; }
 
 		public string? Admin { get; set; }
+
+		public string? CompanyManager { get; set; }
 	}
 }
