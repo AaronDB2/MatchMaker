@@ -11,6 +11,7 @@ using System.Diagnostics.SymbolStore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,7 +68,27 @@ namespace MatchMakerBackend.Core.Services
 			JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
 			string token = tokenHandler.WriteToken(tokenGenerator);
 
-			return new AuthenticationResponse() { Token = token, Email = user.Email, Username = user.UserName, Expiration = expiration };
+			return new AuthenticationResponse() { 
+				Token = token, 
+				Email = user.Email, 
+				Username = user.UserName, 
+				Expiration = expiration, 
+				RefreshToken = GenerateRefreshToken(),
+				RefreshTokenExpirationDateTime = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["RefreshToken:EXPIRATION_MINUTES"])),
+			};
+		}
+
+		/// <summary>
+		/// Creates refresh token
+		/// </summary>
+		/// <returns>Refresh token</returns>
+		private string GenerateRefreshToken()
+		{
+			byte[] bytes= new byte[64];
+			var randomNumberGenerator = RandomNumberGenerator.Create();
+			randomNumberGenerator.GetBytes(bytes);
+
+			return Convert.ToBase64String(bytes);
 		}
 	}
 }

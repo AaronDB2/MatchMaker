@@ -66,6 +66,10 @@ namespace MatchMakerBackend.UI.Controllers
 				var roles = await _userManager.GetRolesAsync(user);
 				// Create Jwt token
 				var authenticationResponse = _jwtService.CreateJwtToken(user, roles);
+				user.RefreshToken = authenticationResponse.RefreshToken;
+				user.RefreshTokenExpirationDateTime = authenticationResponse.RefreshTokenExpirationDateTime;
+
+				await _userManager.UpdateAsync(user);
 
 				return Ok(authenticationResponse);
 			}
@@ -105,9 +109,15 @@ namespace MatchMakerBackend.UI.Controllers
 			if (result.Succeeded)
 			{
 				// Check if user needs the admin role
-				if (registerDTO.Admin != null)
+				if (registerDTO.Admin != "" || registerDTO.Admin == null)
 				{
 					IdentityResult resultAddedToRole = await _userManager.AddToRoleAsync(user, "Admin");
+				}
+
+				// Check if user needs the company manager role
+				if (registerDTO.CompanyManager != "" || registerDTO.CompanyManager == null)
+				{
+					IdentityResult resultAddedToRole = await _userManager.AddToRoleAsync(user, "CompanyManager");
 				}
 
 				// Get roles of user for Jwt token
@@ -115,6 +125,10 @@ namespace MatchMakerBackend.UI.Controllers
 
 				// Create Jwt token
 				var authenticationResponse = _jwtService.CreateJwtToken(user, roles);
+				user.RefreshToken = authenticationResponse.RefreshToken;
+				user.RefreshTokenExpirationDateTime = authenticationResponse.RefreshTokenExpirationDateTime;
+
+				await _userManager.UpdateAsync(user);
 
 				return Ok(authenticationResponse);
 			}
@@ -231,6 +245,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>On success created account username and email</returns>
 		[HttpPost]
 		[Route("createUserAccount")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> CreateUserAccount(RegisterDTO registerDTO)
 		{
 			//Validation
@@ -252,9 +267,15 @@ namespace MatchMakerBackend.UI.Controllers
 			if (result.Succeeded)
 			{
 				// Check if user needs the admin role
-				if (registerDTO.Admin != null)
+				if (registerDTO.Admin != "" || registerDTO.Admin == null)
 				{
 					IdentityResult resultAddedToRole = await _userManager.AddToRoleAsync(user, "Admin");
+				}
+
+				// Check if user needs the company manager role
+				if (registerDTO.CompanyManager != "" || registerDTO.CompanyManager == null)
+				{
+					IdentityResult resultAddedToRole = await _userManager.AddToRoleAsync(user, "CompanyManager");
 				}
 
 				// Create Response

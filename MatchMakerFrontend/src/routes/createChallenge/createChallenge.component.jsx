@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
+import { getDate } from "../../utils/dateTime";
+
 import {
   PageBody,
   CreateChallengeContainer,
@@ -11,12 +13,12 @@ import {
 } from "./createChallenge.styles";
 
 // Gets current date
-function getDate() {
-  const today = new Date();
-  return `${today.getDate()}-${
-    today.getMonth() + 1
-  }-${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-}
+// function getDate() {
+//   const today = new Date();
+//   return `${today.getDate()}-${
+//     today.getMonth() + 1
+//   }-${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+// }
 
 // Create challenge page
 const CreateChallenge = () => {
@@ -163,7 +165,7 @@ const CreateChallenge = () => {
           </div>
           <label for="endDate">End Date:</label>
           <input type="date" id="enddate" name="EndDate" />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Create Challenge" />
         </CreateChallengeForm>
       </CreateChallengeContainer>
     </PageBody>

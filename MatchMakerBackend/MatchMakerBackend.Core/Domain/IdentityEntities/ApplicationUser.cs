@@ -20,5 +20,11 @@ namespace MatchMakerBackend.Core.Domain.IdentityEntities
 
 		// Join table with tag entity (many to many relationship)
 		public List<Tag> Tags { get; set; } = new();
+
+		// Refresh token
+		public string? RefreshToken { get; set; }
+
+		// Refresh token expiration date
+		public DateTime RefreshTokenExpirationDateTime { get; set; }
 	}
 }

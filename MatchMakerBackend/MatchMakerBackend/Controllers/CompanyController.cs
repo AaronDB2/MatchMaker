@@ -1,7 +1,9 @@
 ﻿using MatchMakerBackend.Core.DTO;
 using MatchMakerBackend.Core.ServiceContracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace MatchMakerBackend.UI.Controllers
 {
@@ -29,6 +31,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>On success the created company</returns>
 		[HttpPost]
 		[Route("createCompany")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> CreateCompany(CreateCompanyRequest createCompanyRequest)
 		{
 			//Validation

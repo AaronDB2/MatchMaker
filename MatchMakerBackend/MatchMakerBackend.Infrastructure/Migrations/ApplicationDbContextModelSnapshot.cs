@@ -231,6 +231,13 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                             ConcurrencyStamp = "da3d90b2-4900-4883-bfb6-89d7e83d748a",
                             Name = "ImpactMaker",
                             NormalizedName = "IMPACTMAKER"
+                        },
+                        new
+                        {
+                            Id = new Guid("8bdf1de4-abfc-4a1b-84c0-6dff73bbf00b"),
+                            ConcurrencyStamp = "8bdf1de4-abfc-4a1b-84c0-6dff73bbf00b",
+                            Name = "CompanyManager",
+                            NormalizedName = "COMPANYMANAGER"
                         });
                 });
 
@@ -280,6 +287,12 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RefreshTokenExpirationDateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -309,15 +322,16 @@ namespace MatchMakerBackend.Infrastructure.Migrations
                         {
                             Id = new Guid("4b374141-5b2c-4db5-8416-01470b1f991e"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "70d9b838-d890-476d-a482-99ed5c6345d5",
+                            ConcurrencyStamp = "c9e0b161-36f9-497b-82af-1822241b9431",
                             Email = "aarontest@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AARONTEST@GMAIL.COM",
                             NormalizedUserName = "AARONTEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJHaWEoIwdINhHHS2UpH/3q1mDpXSuIl3nBlzz68bjvxCBFvsSaqn4aZFtnROdevRg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIik9IUPCtgpAzyk7TYmHieAC5r1XkTCCaq7CGHuNY88AUsF5GffGss7lhAnjQPqeg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9f920101-dda5-49ea-be1f-23005426a585",
+                            RefreshTokenExpirationDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "c93ccc04-28f1-4ee4-874a-e2de56b590bb",
                             TwoFactorEnabled = false,
                             UserName = "aarontest@gmail.com"
                         });

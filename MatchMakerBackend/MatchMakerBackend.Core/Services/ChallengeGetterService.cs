@@ -129,6 +129,7 @@ namespace MatchMakerBackend.Core.Services
 					ChallengeTitle= challenge.ChallengeTitle,
 					ChallengeDescription= challenge.ChallengeDescription,
 					ChallengeId = challenge.Id,
+					ViewStatus = challenge.ViewStatus,
 				};
 
 				response.Add(challengeResponse);

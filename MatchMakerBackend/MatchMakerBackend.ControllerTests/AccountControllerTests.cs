@@ -68,16 +68,27 @@ namespace MatchMakerBackend.ControllerTests
 			// Arrange
 			LoginDTO loginDTO = _fixture.Create<LoginDTO>();
 			ApplicationUser user = _fixture.Create<ApplicationUser>();
+			AuthenticationResponse authResponse = _fixture.Create<AuthenticationResponse>();
 
 			//Mock FindByEmailAsync method from UserManager
 			_userManagerMock.Setup
 			 (temp => temp.FindByEmailAsync(It.IsAny<string>()))
 			 .ReturnsAsync(user);
 
+			//Mock UpdateAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.UpdateAsync(It.IsAny<ApplicationUser>()))
+			 .ReturnsAsync(IdentityResult.Success);
+
 			//Mock FindByEmailAsync method from SignInManager
 			_signInManagerMock.Setup
 			 (temp => temp.PasswordSignInAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
 			 .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Success);
+
+			//Mock CreateJwtToken method from JwtService
+			_jwtServiceMock.Setup
+			 (temp => temp.CreateJwtToken(It.IsAny<ApplicationUser>(), It.IsAny<IList<string>>()))
+			.Returns(authResponse);
 
 			// Act
 			var result = await _accountController.PostLogin(loginDTO);
@@ -102,6 +113,11 @@ namespace MatchMakerBackend.ControllerTests
 			//Mock AddToRoleAsync method from UserManager
 			_userManagerMock.Setup
 			 (temp => temp.AddToRoleAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>()))
+			 .ReturnsAsync(IdentityResult.Success);
+
+			//Mock UpdateAsync method from UserManager
+			_userManagerMock.Setup
+			 (temp => temp.UpdateAsync(It.IsAny<ApplicationUser>()))
 			 .ReturnsAsync(IdentityResult.Success);
 
 			//Mock GetRolesAsync method from UserManager

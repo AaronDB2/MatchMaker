@@ -20,6 +20,7 @@ export const LoginForm = styled.form`
   border: solid black 1px;
   padding: 10rem;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  background-color: white;
 
   /* Media Query for mobile */
   @media (max-width: 64rem) {

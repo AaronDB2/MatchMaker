@@ -27,6 +27,9 @@ namespace MatchMakerBackend.Core.Services
 				nameof(QuestionResponse.QuestionId) =>
 				 await _questionRepository.GetFilterdQuestions(temp =>
 				 temp.Id.ToString().Contains(searchString)),
+				nameof(QuestionResponse.ChallengeId) =>
+				 await _questionRepository.GetFilterdQuestions(temp =>
+				 temp.ChallengeId.ToString().Contains(searchString)),
 
 				_ => await _questionRepository.GetAllQuestions()
 			};

@@ -21,3 +21,7 @@ export const EditChallengeForm = styled.form`
     max-width: 300px;
   }
 `;
+
+export const RadioValuesContainer = styled.div`
+  margin: 1rem 0;
+`;

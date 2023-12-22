@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const PageBody = styled.div`
   grid-area: main;
+  background-color: white;
 `;
 
 export const ChallengeContainer = styled.div`

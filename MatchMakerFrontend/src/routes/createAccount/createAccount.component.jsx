@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 
 import {
   PageBody,
@@ -9,16 +10,33 @@ import {
 
 // Create Account page
 const CreateAccount = () => {
+  // Define local state
+  const [adminCheck, setAdminCheck] = useState(false);
+  const [companyManagerCheck, setCompanyManagerCheck] = useState(false);
+
   // Handles create Account form submit event
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    var admin = "";
+    var companyManager = "";
+
+    if (adminCheck) {
+      admin = "Admin";
+    }
+
+    if (companyManagerCheck) {
+      companyManager = "CompanyManager";
+    }
+
     // Prepare request body
     var body = {
       UserName: e.target.UserName.value,
       Email: e.target.Email.value,
       Password: e.target.Password.value,
       ConfirmPassword: e.target.ConfirmPassword.value,
-      Admin: e.target.Admin.value,
+      Admin: admin,
+      CompanyManager: companyManager,
     };
 
     // Send request
@@ -40,6 +58,18 @@ const CreateAccount = () => {
     e.target.Password.value = "";
     e.target.ConfirmPassword.value = "";
     e.target.Admin.value = "";
+    e.target.CompanyManager.value = "";
+  };
+
+  // change handler for checkboxes
+  const checkHandler = (e) => {
+    if (e.target.id === "admin") {
+      setAdminCheck(!adminCheck);
+    }
+
+    if (e.target.id === "companyManager") {
+      setCompanyManagerCheck(!companyManagerCheck);
+    }
   };
 
   return (
@@ -57,10 +87,26 @@ const CreateAccount = () => {
           <input type="password" id="confirmPassword" name="ConfirmPassword" />
           <h3>Roles </h3>
           <div>
-            <input type="checkbox" id="admin" name="Admin" value="admin" />
+            <input
+              type="checkbox"
+              id="admin"
+              name="Admin"
+              value="Admin"
+              checked={adminCheck}
+              onChange={checkHandler}
+            />
             <label for="admin">Admin</label>
+            <input
+              type="checkbox"
+              id="companyManager"
+              name="CompanyManager"
+              value="CompanyManager"
+              checked={companyManagerCheck}
+              onChange={checkHandler}
+            />
+            <label for="companyManager">Company Manager</label>
           </div>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Create Account" />
         </CreateAccountForm>
       </CreateAccountContainer>
     </PageBody>

@@ -7,6 +7,7 @@ export const NavigationContainer = styled.div`
   border-bottom: solid black 2px;
   padding: 0.5rem 0;
   grid-area: header;
+  background-color: white;
 
   div:first-child {
     margin-right: auto;
@@ -38,6 +39,11 @@ export const NavFooterContainer = styled.div`
   border-top: solid black 2px;
   padding: 0.5rem 0;
   grid-area: footer;
+  background-color: #08080a;
+
+  a {
+    color: white;
+  }
 
   a:hover,
   a:active {

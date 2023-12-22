@@ -45,6 +45,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>If success returns the challenge that was created</returns>
 		[HttpPost]
 		[Route("createChallenge")]
+		[Authorize(Roles = "Admin,CompanyManager")]
 		public async Task<IActionResult> CreateChallenge([FromForm] CreateChallengeRequest createChallengeRequest)
 		{
 			// Validation
@@ -101,14 +102,24 @@ namespace MatchMakerBackend.UI.Controllers
 			// Get filterd challenges
 			List<ChallengeResponse> filterdChallenges = await _challengeGetterService.GetFilterdChallenges(searchBy, searchString);
 
+			List<ChallengeResponse> publicChallengeResponses = new List<ChallengeResponse>();
+
+			// Get all challenges that have public view status
+			foreach(ChallengeResponse challengeResponse in filterdChallenges) {
+				if (challengeResponse.ViewStatus == "Public")
+				{
+					publicChallengeResponses.Add(challengeResponse);
+				}
+			}
+
 			// Check if response is null
-			if (filterdChallenges == null)
+			if (publicChallengeResponses == null)
 			{
 				return NoContent();
 			}
 			else
 			{
-				return Ok(filterdChallenges);
+				return Ok(publicChallengeResponses);
 			}
 		}
 
@@ -150,6 +161,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>On success the updated challenge</returns>
 		[HttpPost]
 		[Route("editchallenge")]
+		[Authorize(Roles = "Admin,CompanyManager")]
 		public async Task<IActionResult> EditChallenge([FromForm] UpdateChallengeRequest updateChallengeRequest)
 		{
 			// Validation
@@ -205,6 +217,7 @@ namespace MatchMakerBackend.UI.Controllers
 		/// <returns>On success challenge response</returns>
 		[HttpPost]
 		[Route("challengetag")]
+		[Authorize(Roles = "Admin,CompanyManager")]
 		public async Task<IActionResult> AddChallengeTag(ChallengeTagRequest challengeTagRequest)
 		{
 			//Validation
