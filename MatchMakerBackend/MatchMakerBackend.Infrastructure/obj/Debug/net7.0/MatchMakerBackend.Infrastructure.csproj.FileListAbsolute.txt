@@ -1,0 +1,17 @@
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\bin\Debug\net7.0\MatchMakerBackend.Infrastructure.deps.json
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\bin\Debug\net7.0\MatchMakerBackend.Infrastructure.runtimeconfig.json
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\bin\Debug\net7.0\MatchMakerBackend.Infrastructure.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\bin\Debug\net7.0\MatchMakerBackend.Infrastructure.pdb
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\bin\Debug\net7.0\MatchMakerBackend.Core.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\bin\Debug\net7.0\MatchMakerBackend.Core.pdb
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.AssemblyInfo.cs
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.csproj.CopyComplete
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\refint\MatchMakerBackend.Infrastructure.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.pdb
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\MatchMakerBackend.Infrastructure.genruntimeconfig.cache
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend.Infrastructure\obj\Debug\net7.0\ref\MatchMakerBackend.Infrastructure.dll

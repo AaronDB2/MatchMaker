@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Vo+wcfe5GINrykeaKtsRLSbUUphJ/WiiL/sgk6vsTs8=",
+  "Source": "MatchMakerBackend.UI",
+  "BasePath": "_content/MatchMakerBackend.UI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
