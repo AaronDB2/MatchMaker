@@ -79,3 +79,8 @@ C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBacke
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\System.CodeDom.dll
 C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\aaron\Desktop\Web-Projects\MatchMaker\MatchMakerBackend\MatchMakerBackend\obj\Debug\net7.0\MatchMakerBackend.UI.MvcApplicationPartsAssemblyInfo.cs

@@ -23,6 +23,9 @@ builder.Services.AddControllers(options =>
 	options.Filters.Add(new AuthorizeFilter(policy));
 });
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 // Add services
 builder.Services.AddScoped<ITagsRepository, TagsRepository>();
 builder.Services.AddScoped<IChallengeRepository, ChallengeRepository>();
@@ -96,6 +99,9 @@ builder.Services.AddAuthorization(options =>
 });
 
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // create application pipeline
 //app.UseHsts();
